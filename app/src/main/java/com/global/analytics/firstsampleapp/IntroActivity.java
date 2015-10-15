@@ -28,4 +28,8 @@ public class IntroActivity extends AppCompatActivity {
         pager.setAdapter(pagerAdapter);
     }
 
+    @Override
+    public void onBackPressed(){
+        return;
+    }
 }

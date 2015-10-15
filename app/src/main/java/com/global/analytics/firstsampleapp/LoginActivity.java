@@ -31,11 +31,19 @@ public class LoginActivity extends AppCompatActivity implements onTaskCompleted{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         assetsPropertyReader = new AssetsPropertyReader(this);
-        sharedDataManager = SharedDataManager.getInstance();
+        sharedDataManager = SharedDataManager.getInstance(getApplicationContext());
         txf1 = (EditText)findViewById(R.id.editText);
         txf2 = (EditText)findViewById(R.id.editText2);
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        if(sharedDataManager.checkIfFirstTime()){
+            Intent intent = new Intent(this,IntroActivity.class);
+            startActivity(intent);
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

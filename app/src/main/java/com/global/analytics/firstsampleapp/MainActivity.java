@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView helloworld = (TextView)findViewById(R.id.helloworld);
-        SharedDataManager sharedDataManager = SharedDataManager.getInstance();
+        SharedDataManager sharedDataManager = SharedDataManager.getInstance(getApplicationContext());
         helloworld.setText(sharedDataManager.Username);
         String username = getIntent().getStringExtra("username");
         Properties properties;

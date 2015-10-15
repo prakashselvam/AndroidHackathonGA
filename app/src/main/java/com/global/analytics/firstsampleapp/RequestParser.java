@@ -39,7 +39,7 @@ public class RequestParser extends AsyncTask {
     public RequestParser(Context context, onTaskCompleted listener) {
         this.context = context;
         this.listener = (onTaskCompleted)listener;
-        sharedDataManager = SharedDataManager.getInstance();
+        sharedDataManager = SharedDataManager.getInstance(context);
     }
 
 
