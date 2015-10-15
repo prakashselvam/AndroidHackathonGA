@@ -2,8 +2,10 @@ package com.global.analytics.firstsampleapp;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,14 +37,44 @@ public class LoginActivity extends AppCompatActivity implements onTaskCompleted{
     private loading_indicator lindicator;
     private AlertDialog alertDialog;
     public AssetsPropertyReader assetsPropertyReader;
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+        Log.v("Key: #####  ", FacebookSdk.getApplicationSignature(getApplicationContext()));
         setContentView(R.layout.activity_login);
         assetsPropertyReader = new AssetsPropertyReader(this);
         sharedDataManager = SharedDataManager.getInstance(getApplicationContext());
         txf1 = (EditText)findViewById(R.id.editText);
         txf2 = (EditText)findViewById(R.id.editText2);
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setReadPermissions("user_friends");
+        // If using in a fragment
+        //loginButton.setFragment(this);
+        // Other app specific specialization
+
+        // Callback registration
+        callbackManager = CallbackManager.Factory.create();
+
+        loginButton.registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        // App code
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // App code
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                    }
+                });
     }
 
     @Override
@@ -43,6 +84,20 @@ public class LoginActivity extends AppCompatActivity implements onTaskCompleted{
             Intent intent = new Intent(this,IntroActivity.class);
             startActivity(intent);
         }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Logs 'install' and 'app activate' App Events.
+        AppEventsLogger.activateApp(this,"914957015252031");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Logs 'app deactivate' App Event.
+        AppEventsLogger.deactivateApp(this,"914957015252031");
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
