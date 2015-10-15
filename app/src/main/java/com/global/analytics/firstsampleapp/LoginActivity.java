@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements onTaskCompleted{
                 sharedDataManager.LoginProperty = new Properties();
                 sharedDataManager.LoginProperty.setProperty("Status", "Success");
                 assetsPropertyReader.writePropertiesToDocs("ViewConfig.properties", sharedDataManager.LoginProperty);
-                Intent intent = new Intent(this, MainActivity.class).putExtra("username","Prakash");
+                Intent intent = new Intent(this, IntroActivity.class).putExtra("username","Prakash");
                 startActivity(intent);
             }
         }catch (JSONException e){
