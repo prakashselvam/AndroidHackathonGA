@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,11 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.plus.Plus;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +36,25 @@ import org.json.JSONObject;
 import java.net.URLEncoder;
 import java.util.Properties;
 
-public class LoginActivity extends AppCompatActivity implements onTaskCompleted{
+public class LoginActivity extends AppCompatActivity implements onTaskCompleted,GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        View.OnClickListener {
+
+    /* Request code used to invoke sign in user interactions. */
+    private static final int RC_SIGN_IN = 0;
+
+    /* Client used to interact with Google APIs. */
+    private GoogleApiClient mGoogleApiClient;
+
+    // ...
+
+    @Override
+    public void onClick(View v) {
+        // ...
+        if (v.getId() == R.id.sign_in_button) {
+            onSignInClicked();
+        }
+    }
 
     private EditText txf1,txf2;
     private SharedDataManager sharedDataManager;
@@ -39,9 +63,24 @@ public class LoginActivity extends AppCompatActivity implements onTaskCompleted{
     public AssetsPropertyReader assetsPropertyReader;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
+    /* Is there a ConnectionResult resolution in progress? */
+    private boolean mIsResolving = false;
+
+    /* Should we automatically resolve ConnectionResults when possible? */
+    private boolean mShouldResolve = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Build GoogleApiClient with access to basic profile
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Plus.API)
+                .addScope(new Scope(Scopes.PROFILE))
+                .addScope(new Scope(Scopes.EMAIL))
+                .build();
+
+        //facebook
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         Log.v("Key: #####  ", FacebookSdk.getApplicationSignature(getApplicationContext()));
         setContentView(R.layout.activity_login);
@@ -49,6 +88,9 @@ public class LoginActivity extends AppCompatActivity implements onTaskCompleted{
         sharedDataManager = SharedDataManager.getInstance(getApplicationContext());
         txf1 = (EditText)findViewById(R.id.editText);
         txf2 = (EditText)findViewById(R.id.editText2);
+        //google sign in
+        findViewById(R.id.sign_in_button).setOnClickListener(this);
+
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("user_friends");
         // If using in a fragment
@@ -80,6 +122,7 @@ public class LoginActivity extends AppCompatActivity implements onTaskCompleted{
     @Override
     public void onStart(){
         super.onStart();
+        mGoogleApiClient.connect();
         if(sharedDataManager.checkIfFirstTime()){
             Intent intent = new Intent(this,IntroActivity.class);
             startActivity(intent);
@@ -90,14 +133,19 @@ public class LoginActivity extends AppCompatActivity implements onTaskCompleted{
         super.onResume();
 
         // Logs 'install' and 'app activate' App Events.
-        AppEventsLogger.activateApp(this,"914957015252031");
+        AppEventsLogger.activateApp(this, "914957015252031");
     }
     @Override
     protected void onPause() {
         super.onPause();
 
         // Logs 'app deactivate' App Event.
-        AppEventsLogger.deactivateApp(this,"914957015252031");
+        AppEventsLogger.deactivateApp(this, "914957015252031");
+    }
+    @Override
+     protected void onStop() {
+        super.onStop();
+        mGoogleApiClient.disconnect();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -182,7 +230,75 @@ public class LoginActivity extends AppCompatActivity implements onTaskCompleted{
             e.printStackTrace();
         }
     }
-class alertDialogOnClickListener implements AlertDialog.OnClickListener {
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        // onConnected indicates that an account was selected on the device, that the selected
+        // account has granted any requested permissions to our app and that we were able to
+        // establish a service connection to Google Play services.
+        Log.d("GOOGLE+", "onConnected:" + bundle);
+        mShouldResolve = false;
+
+        // Show the signed-in UI
+        //showSignedInUI();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+    private void onSignInClicked() {
+        // User clicked the sign-in button, so begin the sign-in process and automatically
+        // attempt to resolve any errors that occur.
+        mShouldResolve = true;
+        mGoogleApiClient.connect();
+
+        // Show a message to the user that we are signing in.
+        //mStatus.setText(R.string.signing_in);
+    }
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+// Could not connect to Google Play Services.  The user needs to select an account,
+        // grant permissions or resolve an error in order to sign in. Refer to the javadoc for
+        // ConnectionResult to see possible error codes.
+        Log.d("GOOGLE+", "onConnectionFailed:" + connectionResult);
+
+        if (!mIsResolving && mShouldResolve) {
+            if (connectionResult.hasResolution()) {
+                try {
+                    connectionResult.startResolutionForResult(this, RC_SIGN_IN);
+                    mIsResolving = true;
+                } catch (IntentSender.SendIntentException e) {
+                    Log.e("GOOGLE+", "Could not resolve ConnectionResult.", e);
+                    mIsResolving = false;
+                    mGoogleApiClient.connect();
+                }
+            } else {
+                // Could not resolve the connection result, show the user an
+                // error dialog.
+                //showErrorDialog(connectionResult);
+            }
+        } else {
+            // Show the signed-out UI
+            //showSignedOutUI();
+        }
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("GOOGLE+", "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
+
+        if (requestCode == RC_SIGN_IN) {
+            // If the error resolution was not successful we should not resolve further.
+            if (resultCode != RESULT_OK) {
+                mShouldResolve = false;
+            }
+
+            mIsResolving = false;
+            mGoogleApiClient.connect();
+        }
+    }
+    class alertDialogOnClickListener implements AlertDialog.OnClickListener {
     public void onClick(DialogInterface dialog, int which) {
         Log.v("First", String.valueOf(which));
         switch(which){
