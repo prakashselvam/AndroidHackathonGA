@@ -106,7 +106,8 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="10dp"
-            android:text= "Next"/>
+            android:text= "Next"
+            android:onClick="gotoCardActivity"/>
 
     </LinearLayout>
 </LinearLayout>
