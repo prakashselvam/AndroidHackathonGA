@@ -32,4 +32,7 @@ public class IntroActivity extends AppCompatActivity {
     public void onBackPressed(){
         return;
     }
+    public void gotologin(View view){
+        finish();
+    }
 }

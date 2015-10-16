@@ -3,6 +3,7 @@ package com.global.analytics.firstsampleapp;
 /**
  * Created by Prakash on 15/10/15.
  */
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

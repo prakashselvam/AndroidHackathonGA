@@ -9,6 +9,7 @@ import android.content.IntentSender;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +37,7 @@ import org.json.JSONObject;
 import java.net.URLEncoder;
 import java.util.Properties;
 
-public class LoginActivity extends AppCompatActivity implements onTaskCompleted,GoogleApiClient.ConnectionCallbacks,
+public class LoginActivity extends Activity implements onTaskCompleted,GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
 
@@ -71,6 +72,7 @@ public class LoginActivity extends AppCompatActivity implements onTaskCompleted,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         // Build GoogleApiClient with access to basic profile
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -86,10 +88,13 @@ public class LoginActivity extends AppCompatActivity implements onTaskCompleted,
         setContentView(R.layout.activity_login);
         assetsPropertyReader = new AssetsPropertyReader(this);
         sharedDataManager = SharedDataManager.getInstance(getApplicationContext());
-        txf1 = (EditText)findViewById(R.id.editText);
-        txf2 = (EditText)findViewById(R.id.editText2);
+        txf1 = (EditText)findViewById(R.id.email);
+        txf2 = (EditText)findViewById(R.id.password);
         //google sign in
         findViewById(R.id.sign_in_button).setOnClickListener(this);
+
+        TextView tv=(TextView)findViewById(R.id.signUpTextView);
+        tv.setText(Html.fromHtml(getString(R.string.sign_up_text)));
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("user_friends");
@@ -150,7 +155,7 @@ public class LoginActivity extends AppCompatActivity implements onTaskCompleted,
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_login, menu);
+        //getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
     }
     public void onClickButton (View view){
@@ -204,15 +209,15 @@ public class LoginActivity extends AppCompatActivity implements onTaskCompleted,
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            txf2.setText("Settings clicked");
-            return true;
-        }
-        else if (id == R.id.action_settings1) {
-            Intent intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-
-        }
+//        if (id == R.id.action_settings) {
+//            txf2.setText("Settings clicked");
+//            return true;
+//        }
+//        else if (id == R.id.action_settings1) {
+//            Intent intent = new Intent(this,MainActivity.class);
+//            startActivity(intent);
+//
+//        }
 
         return super.onOptionsItemSelected(item);
     }

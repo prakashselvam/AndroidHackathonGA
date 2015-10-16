@@ -61,5 +61,6 @@
         android:textAllCaps="false"
         android:textAlignment="gravity"
         android:background="@drawable/button_shape"
+        android:onClick="gotologin"
         />
 </LinearLayout>

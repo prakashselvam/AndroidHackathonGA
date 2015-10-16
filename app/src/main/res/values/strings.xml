@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FirstSampleApp</string>
+    <string name="app_name">LendingStream</string>
     <string name="hello_world">Hello world!</string>
     <string name="log_in_text">Welcome to MoneyHath</string>
     <string name="action_settings">Settings</string>
@@ -7,6 +7,14 @@
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="title_activity_intro">IntroActivity</string>
     <string name="preference_file_key">com.global.hackathon.Preferences</string>
+    <string name="prompt_email">email address</string>
+    <string name="prompt_password">password</string>
+    <string name="action_sign_in">Sign In</string>
+    <string name="sign_up_text">
+        <![CDATA[
+        <p>Do not have an account ? <b>Sign Up</b> </p>
+        ]]>
+    </string>
     <color name="white">#FFFFFF</color>
     <color name="light_grey">#B6B6B6</color>
     <color name="dark_grey">#727272</color>
