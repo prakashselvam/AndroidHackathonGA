@@ -30,6 +30,10 @@
             android:label="@string/title_activity_intro"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".ApplicationActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
                 "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
