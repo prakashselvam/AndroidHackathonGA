@@ -1,0 +1,103 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bSearch2"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ecf0f1"
+    android:clickable="false"
+    android:padding="30dp"
+    android:orientation="vertical"
+    android:gravity="top|center"
+    android:layout_gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="What are your monthly expenses?"
+        android:layout_marginBottom="10dp"/>
+
+    <com.global.analytics.firstsampleapp.Pacpie
+        android:id="@+id/pacpieChart"
+        xmlns:pacpie="http://schemas.android.com/apk/res-auto"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        pacpie:activate_rotation="true"
+        pacpie:lineAntiAlias="true"
+        pacpie:lineDefaultColor="@color/default_line_color"
+        pacpie:lineStrokeWidth="3.0"
+        pacpie:sliceAntiAlias="true"
+        pacpie:sliceDefaultColor="@color/default_slice_color"
+        pacpie:sliceStrokeWidth="0.0"
+        android:visibility="gone"/>
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="230dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.global.analytics.firstsampleapp.NiceSpinner
+            android:id="@+id/Rent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"/>
+        <com.global.analytics.firstsampleapp.NiceSpinner
+            android:id="@+id/Loans"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.global.analytics.firstsampleapp.NiceSpinner
+            android:id="@+id/Bills"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"/>
+        <com.global.analytics.firstsampleapp.NiceSpinner
+            android:id="@+id/Transportation"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.global.analytics.firstsampleapp.NiceSpinner
+            android:id="@+id/Food"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"/>
+        <com.global.analytics.firstsampleapp.NiceSpinner
+            android:id="@+id/Other"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text= "Next"/>
+
+</LinearLayout>
