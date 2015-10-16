@@ -148,6 +148,7 @@
             android:background="@drawable/spinner_drawable"
             android:hint="Mobile Number"
             android:paddingLeft="10dp"/>
+
         <Button
             android:layout_gravity="center"
             style="?android:textAppearanceSmall"
