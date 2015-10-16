@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 public class ApplicationFragmentAdapter extends FragmentPagerAdapter {
 
-    final int PAGE_COUNT = 2;
+    final int PAGE_COUNT = 3;
     /** Constructor of the class */
     public ApplicationFragmentAdapter(FragmentManager fm) {
         super(fm);
@@ -28,6 +28,13 @@ public class ApplicationFragmentAdapter extends FragmentPagerAdapter {
         }
         else if (arg0 == 1) {
             PhaseTwoFragment myFragment = new PhaseTwoFragment();
+            Bundle data = new Bundle();
+            data.putInt("current_page", arg0 + 1);
+            myFragment.setArguments(data);
+            return myFragment;
+        }
+        else if (arg0 == 2) {
+            PhaseThreeFragment myFragment = new PhaseThreeFragment();
             Bundle data = new Bundle();
             data.putInt("current_page", arg0 + 1);
             myFragment.setArguments(data);
