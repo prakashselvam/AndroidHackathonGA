@@ -34,7 +34,7 @@ public class PhaseThreeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.content_phase_two, container,false);
+        View v = inflater.inflate(R.layout.content_phase_three, container,false);
 
         NiceSpinner county = (NiceSpinner) v.findViewById(R.id.county);
         List<String> dataset = new LinkedList<>(Arrays.asList("County", "Angus", "Berkshire", "Bristol", "Cheshire"));
