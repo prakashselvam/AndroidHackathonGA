@@ -10,19 +10,53 @@
     android:orientation="vertical"
     android:gravity="top|center"
     android:layout_gravity="center">
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:padding="10dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="What are your monthly expenses?"
-        android:layout_marginBottom="10dp"/>
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="@drawable/border">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            >
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:src="@drawable/avatar"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="sans-serif"
+                android:textSize="15dp"
+                android:textColor="@color/dark_grey"
+                android:text="What are your monthly expenses?"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/light_grey"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="0dp">
+        </LinearLayout>
 
     <com.global.analytics.firstsampleapp.Pacpie
         android:id="@+id/pacpieChart"
         xmlns:pacpie="http://schemas.android.com/apk/res-auto"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:padding="10dp"
         pacpie:activate_rotation="true"
         pacpie:lineAntiAlias="true"
@@ -35,7 +69,7 @@
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chart"
         android:layout_width="match_parent"
-        android:layout_height="230dp" />
+        android:layout_height="200dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,13 +80,19 @@
             android:layout_weight="1"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp"
+            android:fontFamily="sans-serif"
+            android:textSize="15dp"
+            android:textColor="@color/dark_grey"/>
         <com.global.analytics.firstsampleapp.NiceSpinner
             android:id="@+id/Loans"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="40dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:fontFamily="sans-serif"
+            android:textSize="15dp"
+            android:textColor="@color/dark_grey"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,13 +104,20 @@
             android:layout_weight="1"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp"
+            android:fontFamily="sans-serif"
+            android:textSize="15dp"
+            android:textColor="@color/dark_grey"/>
         <com.global.analytics.firstsampleapp.NiceSpinner
             android:id="@+id/Transportation"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="40dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:fontFamily="sans-serif"
+            android:textSize="15dp"
+            android:textColor="@color/dark_grey"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,22 +129,37 @@
             android:layout_weight="1"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp"
+            android:fontFamily="sans-serif"
+            android:textSize="15dp"
+            android:textColor="@color/dark_grey"/>
         <com.global.analytics.firstsampleapp.NiceSpinner
             android:id="@+id/Other"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="40dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:fontFamily="sans-serif"
+            android:textSize="15dp"
+            android:textColor="@color/dark_grey"/>
     </LinearLayout>
 
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:text= "Next"/>
-
+        <Button
+            android:layout_gravity="center"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:height="30dp"
+            android:background="#3a99d9"
+            android:alpha="0.8"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:text= "Next"/>
+</LinearLayout>
 </LinearLayout>

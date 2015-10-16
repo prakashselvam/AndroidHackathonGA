@@ -140,7 +140,7 @@ public class PhaseFiveFragment extends Fragment {
         Bills.attachDataSource(dataset3);
 
         NiceSpinner Transportation = (NiceSpinner) v.findViewById(R.id.Transportation);
-        List<String> dataset4 = new LinkedList<>(Arrays.asList("Transportation", "£ 1-50", "£ 51-100",
+        List<String> dataset4 = new LinkedList<>(Arrays.asList("Transport", "£ 1-50", "£ 51-100",
                 "£ 101-150", "£ 151-200", "£ 201-250", "£ 251-300", "£ 301-350", "£ 351-400",
                 "£ 401-450", "£ 451-500"));
         Transportation.attachDataSource(dataset4);
