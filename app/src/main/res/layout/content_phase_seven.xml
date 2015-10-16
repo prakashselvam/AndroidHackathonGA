@@ -1,0 +1,113 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bSearch2"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ecf0f1"
+    android:clickable="false"
+    android:padding="30dp"
+    android:orientation="vertical"
+    android:gravity="top|center"
+    android:layout_gravity="center">
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="@drawable/border">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="20dp"
+            >
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:src="@drawable/avatar"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="sans-serif"
+                android:textSize="15dp"
+                android:textColor="@color/dark_grey"
+                android:text="Bank Account Details"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/light_grey"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="10dp">
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/BankSortCode"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/spinner_drawable"
+            android:hint="Bank Sort Code"
+            android:fontFamily="sans-serif"
+            android:textSize="15dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/dark_grey"
+            android:paddingLeft="10dp"/>
+        <EditText
+            android:id="@+id/BankAccountNumber"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/spinner_drawable"
+            android:hint="Bank Account Number"
+            android:fontFamily="sans-serif"
+            android:textSize="15dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/dark_grey"
+            android:paddingLeft="10dp"/>
+
+        <com.global.analytics.firstsampleapp.NiceSpinner
+            android:id="@+id/Debitcardtype"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:fontFamily="sans-serif"
+            android:textSize="15dp"
+            android:textColor="@color/dark_grey"
+            android:layout_marginBottom="10dp"/>
+
+
+        <Button
+            android:layout_gravity="center"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:height="30dp"
+            android:background="#3a99d9"
+            android:alpha="0.8"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:text= "Next"
+            android:onClick="gotoCardActivity"/>
+
+    </LinearLayout>
+</LinearLayout>

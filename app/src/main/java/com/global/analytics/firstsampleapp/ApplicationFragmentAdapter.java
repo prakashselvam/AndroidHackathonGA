@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 public class ApplicationFragmentAdapter extends FragmentPagerAdapter {
 
-    final int PAGE_COUNT = 6;
+    final int PAGE_COUNT = 8;
     /** Constructor of the class */
     public ApplicationFragmentAdapter(FragmentManager fm) {
         super(fm);
@@ -56,6 +56,20 @@ public class ApplicationFragmentAdapter extends FragmentPagerAdapter {
         }
         else if (arg0 == 5) {
             PhaseSixFragment myFragment = new PhaseSixFragment();
+            Bundle data = new Bundle();
+            data.putInt("current_page", arg0 + 1);
+            myFragment.setArguments(data);
+            return myFragment;
+        }
+        else if (arg0 == 6) {
+            PhaseSevenFragment myFragment = new PhaseSevenFragment();
+            Bundle data = new Bundle();
+            data.putInt("current_page", arg0 + 1);
+            myFragment.setArguments(data);
+            return myFragment;
+        }
+        else if (arg0 == 7) {
+            PhaseEightFragment myFragment = new PhaseEightFragment();
             Bundle data = new Bundle();
             data.putInt("current_page", arg0 + 1);
             myFragment.setArguments(data);
