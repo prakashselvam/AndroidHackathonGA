@@ -8,11 +8,13 @@ import android.support.v4.app.FragmentPagerAdapter;
         import android.support.v4.app.Fragment;
         import android.support.v4.app.FragmentManager;
         import android.support.v4.app.FragmentPagerAdapter;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class IntroFragmentPagerAdapter extends FragmentPagerAdapter {
 
     final int PAGE_COUNT = 3;
-
     /** Constructor of the class */
     public IntroFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -24,6 +26,7 @@ public class IntroFragmentPagerAdapter extends FragmentPagerAdapter {
 
         IntroFragment myFragment = new IntroFragment();
         Bundle data = new Bundle();
+
         data.putInt("current_page", arg0+1);
         myFragment.setArguments(data);
         return myFragment;

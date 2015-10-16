@@ -1,15 +1,16 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".LoginActivity">
-
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".LoginActivity">
+    <TextView android:text="@string/log_in_text" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView" />
+        android:id="@+id/textView"
+        android:gravity="center"/>
 
     <EditText
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
@@ -20,7 +21,8 @@
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_width="213dp"
         android:layout_height="wrap_content"
         android:id="@+id/editText2"
         android:layout_below="@+id/editText"
@@ -30,6 +32,7 @@
         android:layout_alignEnd="@+id/editText" />
 
     <Button
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Button"
@@ -40,21 +43,30 @@
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/editText2"
         android:layout_alignEnd="@+id/editText2" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:paddingTop="80dp">
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
+        android:gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="58dp"
+        android:paddingBottom="15sp"
+        android:paddingRight="65dp"
+        android:paddingLeft="65dp"
+        android:paddingTop="15sp"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/button"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/login_button"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />
-
-</RelativeLayout>
+        android:layout_below="@+id/button" />
+        <com.google.android.gms.common.SignInButton
+            android:gravity="center"
+            android:id="@+id/sign_in_button"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:paddingTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/login_button" />
+    </LinearLayout>
+</LinearLayout>

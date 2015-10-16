@@ -5,11 +5,14 @@ android {
     buildToolsVersion "23.0.1"
     apply plugin: 'com.google.gms.google-services'
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.global.analytics.firstsampleapp"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        renderscriptTargetApi 23
+        renderscriptSupportModeEnabled true
     }
     buildTypes {
         release {

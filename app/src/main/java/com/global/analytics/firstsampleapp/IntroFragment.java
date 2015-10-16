@@ -8,6 +8,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class IntroFragment extends Fragment{
@@ -28,9 +32,37 @@ public class IntroFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        Animation animFadein = AnimationUtils.loadAnimation(this.getContext(),R.anim.fade_in);
         View v = inflater.inflate(R.layout.intro_content_activity, container,false);
         TextView tv = (TextView ) v.findViewById(R.id.tv);
         tv.setText("You are viewing the page #" + mCurrentPage + "\n\n" + "Swipe Horizontally left / right");
+        ImageView img = (ImageView) v.findViewById(R.id.imageView1);
+
+
+        if (mCurrentPage == 1) {
+            View circle=(View) v.findViewById(R.id.circle_1);
+            circle.setBackgroundColor(getResources().getColor(R.color.dark_grey));
+            img.setImageResource(R.drawable.splash_1);
+            tv.setText("Answer to all your Loan Queries with a Single Tap");
+        }else if (mCurrentPage == 2) {
+            View circle=(View) v.findViewById(R.id.circle_2);
+            circle.setBackgroundColor(getResources().getColor(R.color.dark_grey));
+            img.setImageResource(R.drawable.splash_2);
+            img.startAnimation(animFadein);
+            tv.setText("Credit Card Checks ? In Seconds !!");
+        }else if (mCurrentPage == 3) {
+            Animation animSlideUp = AnimationUtils.loadAnimation(this.getContext(),R.anim.slide_up);
+            View circle = (View) v.findViewById(R.id.circle_3);
+            circle.setBackgroundColor(getResources().getColor(R.color.dark_grey));
+            final Button btn=(Button) v.findViewById(R.id.start_btn);
+            btn.setVisibility(View.VISIBLE);
+            btn.startAnimation(animSlideUp);
+            img.setImageResource(R.drawable.splash_3);
+            tv.setText("Is that all ? Naah, We Have More !!");
+        }
+        img.setScaleType(ImageView.ScaleType.FIT_XY);
+        img.startAnimation(animFadein);
         return v;
     }
 
