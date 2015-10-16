@@ -164,19 +164,21 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
             String passWord = txf2.getText().toString();
             sharedDataManager.Username = userName;
             if (userName.length() > 0 && passWord.length() > 0) {
-                lindicator = new loading_indicator();
-                lindicator.showIndicator(LoginActivity.this);
-                String url = sharedDataManager.RemoteUrl + "/authenticate/";
-                String postData = "";
-                try {
-                    postData = "username=" + URLEncoder.encode(userName, "UTF-8") + "&password=" + URLEncoder.encode(passWord, "UTF-8");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    postData = "username=" + userName + "&password=" + passWord;
-                }
-                Log.v("Post Data", postData);
-                String notificationName = "LoginCall";
-                new RequestParser(this.getApplicationContext(), this).execute(url, postData, notificationName, true);
+                Intent intent = new Intent(this,ApplicationActivity.class);
+                startActivity(intent);
+//                lindicator = new loading_indicator();
+//                lindicator.showIndicator(LoginActivity.this);
+//                String url = sharedDataManager.RemoteUrl + "/authenticate/";
+//                String postData = "";
+//                try {
+//                    postData = "username=" + URLEncoder.encode(userName, "UTF-8") + "&password=" + URLEncoder.encode(passWord, "UTF-8");
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                    postData = "username=" + userName + "&password=" + passWord;
+//                }
+//                Log.v("Post Data", postData);
+//                String notificationName = "LoginCall";
+//                new RequestParser(this.getApplicationContext(), this).execute(url, postData, notificationName, true);
             } else {
                 lindicator.hideIndicator();
                 showAlertMessage("Email and password cannot be empty.", "Enter Credentials");
