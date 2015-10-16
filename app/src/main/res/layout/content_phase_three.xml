@@ -42,6 +42,8 @@
                 android:layout_marginLeft="20dp"
                 android:fontFamily="sans-serif"
                 android:textSize="15dp"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:textColor="@color/dark_grey"
                 android:text="Where do you live?"/>
         </LinearLayout>
@@ -61,6 +63,8 @@
             android:hint="PostCode"
             android:fontFamily="sans-serif"
             android:textSize="15dp"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:textColor="@color/dark_grey"
             android:paddingLeft="10dp"/>
 
@@ -73,6 +77,8 @@
             android:hint="House Name/Number"
             android:fontFamily="sans-serif"
             android:textSize="15dp"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:textColor="@color/dark_grey"
             android:paddingLeft="10dp"/>
 
@@ -85,6 +91,8 @@
             android:hint="Street"
             android:fontFamily="sans-serif"
             android:textSize="15dp"
+            android:ellipsize="end"
+            android:singleLine="true"
             android:textColor="@color/dark_grey"
             android:paddingLeft="10dp"/>
         <EditText
