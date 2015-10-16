@@ -52,7 +52,7 @@ public class IntroFragment extends Fragment{
             img.startAnimation(animFadein);
             tv.setText("Credit Card Checks ? In Seconds !!");
         }else if (mCurrentPage == 3) {
-            Animation animSlideUp = AnimationUtils.loadAnimation(this.getContext(),R.anim.slide_up);
+            Animation animSlideUp = AnimationUtils.loadAnimation(this.getContext(),R.anim.slide_up_new);
             View circle = (View) v.findViewById(R.id.circle_3);
             circle.setBackgroundColor(getResources().getColor(R.color.dark_grey));
             final Button btn=(Button) v.findViewById(R.id.start_btn);
