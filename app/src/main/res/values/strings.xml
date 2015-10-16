@@ -10,9 +10,15 @@
     <string name="prompt_email">email address</string>
     <string name="prompt_password">password</string>
     <string name="action_sign_in">Sign In</string>
+    <string name="page_one_btn">Continue</string>
     <string name="sign_up_text">
         <![CDATA[
         <p>Do not have an account ? <b>Sign Up</b> </p>
+        ]]>
+    </string>
+    <string name="how_much_string">
+        <![CDATA[
+        <p><b>How much</b> do you want to <b>borrow</b>?</p>
         ]]>
     </string>
     <color name="white">#FFFFFF</color>

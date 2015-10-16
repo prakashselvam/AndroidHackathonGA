@@ -2,6 +2,7 @@ package com.global.analytics.firstsampleapp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by Prakash on 16/10/15.
  */
@@ -22,7 +25,7 @@ public class PhaseOneFragment extends Fragment implements SeekBar.OnSeekBarChang
     SeekBar mybar;
     TextView textboxloanamount;
     ImageView imageMoneyRepresentation;
-
+    int currentimg = R.drawable.zero_plus;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,17 +55,28 @@ public class PhaseOneFragment extends Fragment implements SeekBar.OnSeekBarChang
         int amount = start + ((progress * 14) / 10) * 10;
         String amountString = Integer.toString(amount);
         textboxloanamount.setText("£ "+amountString);
-        if (amount>300){
+        Animation animFadeFast = AnimationUtils.loadAnimation(this.getContext(),R.anim.fade_in_fast);
+        if (amount>0&&amount<500){
             //TODO set image here
-            imageMoneyRepresentation.setImageResource(R.drawable.howmuch);
-        }else if (amount>600){
-
-        }else if (amount>900){
-
-        }else if(amount>1200) {
-
-        }else if(amount>1400){
-
+            if(currentimg != R.drawable.zero_plus) {
+                imageMoneyRepresentation.setImageResource(R.drawable.zero_plus);
+                imageMoneyRepresentation.setAnimation(animFadeFast);
+                currentimg = R.drawable.zero_plus;
+            }
+        }else if (amount>=500&&amount<1000){
+            if(currentimg != R.drawable.five_hundred_plus) {
+                ImageView iv = (ImageView) getActivity().findViewById(R.id.imageMoneyRepresentation);
+                imageMoneyRepresentation.setAnimation(animFadeFast);
+                iv.setImageResource(R.drawable.five_hundred_plus);
+            }
+            currentimg = R.drawable.five_hundred_plus;
+        }else if(amount>=1000&&amount<1500){
+            if(currentimg != R.drawable.thousand_plus) {
+                ImageView iv = (ImageView) getActivity().findViewById(R.id.imageMoneyRepresentation);
+                iv.setImageResource(R.drawable.thousand_plus);
+                imageMoneyRepresentation.setAnimation(animFadeFast);
+                currentimg = R.drawable.thousand_plus;
+            }
         }
 
     }
