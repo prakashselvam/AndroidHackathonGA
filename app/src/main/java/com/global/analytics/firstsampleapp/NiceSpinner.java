@@ -51,16 +51,19 @@ public class NiceSpinner extends TextView {
     public NiceSpinner(Context context) {
         super(context);
         init(context, null);
+        setBackgroundResource(R.drawable.spinner_drawable);
     }
 
     public NiceSpinner(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
+        setBackgroundResource(R.drawable.spinner_drawable);
     }
 
     public NiceSpinner(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
+        setBackgroundResource(R.drawable.spinner_drawable);
     }
 
     @Override

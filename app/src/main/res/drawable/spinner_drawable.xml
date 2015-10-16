@@ -8,6 +8,9 @@
                     android:bottomRightRadius="1dp"
                     android:topLeftRadius="1dp"
                     android:topRightRadius="1dp" />
+            <stroke
+                android:color="@color/light_grey"
+                android:width="0.3dp"/>
         </shape>
     </item>
 </layer-list>

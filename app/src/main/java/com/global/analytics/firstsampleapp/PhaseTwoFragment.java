@@ -38,11 +38,11 @@ public class PhaseTwoFragment extends Fragment {
         View v = inflater.inflate(R.layout.content_phase_two, container,false);
 
         NiceSpinner title = (NiceSpinner) v.findViewById(R.id.Title);
-        List<String> dataset = new LinkedList<>(Arrays.asList("Select--","Mr", "Miss", "Mrs", "Ms"));
+        List<String> dataset = new LinkedList<>(Arrays.asList("Salutation--","Mr", "Miss", "Mrs", "Ms"));
         title.attachDataSource(dataset);
 
         NiceSpinner MaritalStatus = (NiceSpinner) v.findViewById(R.id.MaritalStatus);
-        List<String> dataset1 = new LinkedList<>(Arrays.asList("Select--","Single", "Married",
+        List<String> dataset1 = new LinkedList<>(Arrays.asList("Marital Status--","Single", "Married",
                 "Living Together", "Divorced","Seperated","Widowed"));
         MaritalStatus.attachDataSource(dataset1);
 
