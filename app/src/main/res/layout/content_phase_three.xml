@@ -32,8 +32,8 @@
             android:paddingTop="20dp"
             >
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:gravity="center"
                 android:src="@drawable/home"/>
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:fontFamily="sans-serif"
-                android:textSize="15dp"
+                android:textSize="16dp"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:textColor="@color/dark_grey"
