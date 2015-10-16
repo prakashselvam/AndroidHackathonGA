@@ -163,9 +163,9 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
             String userName = txf1.getText().toString().trim();
             String passWord = txf2.getText().toString();
             sharedDataManager.Username = userName;
-            if (userName.length() > 0 && passWord.length() > 0) {
-                Intent intent = new Intent(this,ApplicationActivity.class);
-                startActivity(intent);
+            Intent intent = new Intent(this,ApplicationActivity.class);
+            startActivity(intent);
+//            if (userName.length() > 0 && passWord.length() > 0) {
 //                lindicator = new loading_indicator();
 //                lindicator.showIndicator(LoginActivity.this);
 //                String url = sharedDataManager.RemoteUrl + "/authenticate/";
@@ -179,10 +179,10 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
 //                Log.v("Post Data", postData);
 //                String notificationName = "LoginCall";
 //                new RequestParser(this.getApplicationContext(), this).execute(url, postData, notificationName, true);
-            } else {
-                lindicator.hideIndicator();
-                showAlertMessage("Email and password cannot be empty.", "Enter Credentials");
-            }
+//            } else {
+//                lindicator.hideIndicator();
+//                showAlertMessage("Email and password cannot be empty.", "Enter Credentials");
+//            }
         }catch (Exception e){
             e.printStackTrace();
             if (lindicator!=null) lindicator.hideIndicator();

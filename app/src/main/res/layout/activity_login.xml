@@ -103,7 +103,8 @@
                         android:textSize="20sp"
                         android:height="30dp"
                         android:background="#3a99d9"
-                        android:alpha="0.8"/>
+                        android:alpha="0.8"
+                        android:onClick="onClickButton"/>
 
                 </LinearLayout>
             </LinearLayout>
