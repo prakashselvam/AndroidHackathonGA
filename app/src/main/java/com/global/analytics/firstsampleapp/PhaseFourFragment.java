@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -16,6 +18,7 @@ import java.util.List;
 public class PhaseFourFragment extends Fragment {
 
     int mCurrentPage;
+    View v;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,7 @@ public class PhaseFourFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.content_phase_four, container,false);
+        v = inflater.inflate(R.layout.content_phase_four, container,false);
 
         NiceSpinner IncomeSource = (NiceSpinner) v.findViewById(R.id.IncomeSource);
         List<String> dataset = new LinkedList<>(Arrays.asList("Primary Source of Income",
@@ -61,4 +64,11 @@ public class PhaseFourFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        Animation animPushUp = AnimationUtils.loadAnimation(this.getActivity(), R.anim.fade_in);
+
+        v.setAnimation(animPushUp);
+    }
 }

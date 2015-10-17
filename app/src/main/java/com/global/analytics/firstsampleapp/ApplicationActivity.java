@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
@@ -33,11 +35,9 @@ public class ApplicationActivity extends AppCompatActivity {
         ApplicationFragmentAdapter pagerAdapter = new ApplicationFragmentAdapter(fm);
 
         /** Setting the pagerAdapter to the pager object */
-        pager.setOnTouchListener(new View.OnTouchListener()
-        {
+        pager.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event)
-            {
+            public boolean onTouch(View v, MotionEvent event) {
                 return true;
             }
         });
@@ -63,7 +63,7 @@ public class ApplicationActivity extends AppCompatActivity {
         });
     }
     public void gotoCardActivity(View view){
-        pager.setCurrentItem(6,true);
+        pager.setCurrentItem(6, true);
 //        Intent scanIntent = new Intent(this, CardIOActivity.class);
 //
 //        // customize these values to suit your needs.
@@ -117,24 +117,57 @@ public class ApplicationActivity extends AppCompatActivity {
         // else handle other activity results
     }
     public void phaseonego(View view){
-        pager.setCurrentItem(1,true);
+        Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+        pager.setAnimation(animPushUp);
+        pager.setCurrentItem(1, true);
+
     }
     public void phasetwogo(View view){
+        Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+        pager.setAnimation(animPushUp);
         pager.setCurrentItem(2,true);
     }
     public void phasethreego(View view){
+        Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+        pager.setAnimation(animPushUp);
         pager.setCurrentItem(3,true);
     }
     public void phasefourgo(View view){
+        Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+        pager.setAnimation(animPushUp);
         pager.setCurrentItem(4,true);
     }
     public void phasefivego(View view){
+        Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+        pager.setAnimation(animPushUp);
         pager.setCurrentItem(5,true);
     }
     public void phasesevengo(View view){
+        Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+        pager.setAnimation(animPushUp);
         pager.setCurrentItem(7,true);
     }
-    public void phaseeightgo(View view){
-        pager.setCurrentItem(8,true);
+    public void phaseeightgonow(View view){
+        Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+        pager.setAnimation(animPushUp);
+        pager.setCurrentItem(8,true); }
+    public void phaseninego(View view){
+        Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+        pager.setAnimation(animPushUp);
+        pager.setCurrentItem(9,true);
     }
+    public void phasetengo(View view){
+        Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+        pager.setAnimation(animPushUp);
+        pager.setCurrentItem(10,true);
+    }
+    public void phasesixgo(View view){
+        Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+        pager.setAnimation(animPushUp);
+        pager.setCurrentItem(6,true);
+    }
+    public void phasesevengohome(View view){
+        finish();
+    }
+
 }
