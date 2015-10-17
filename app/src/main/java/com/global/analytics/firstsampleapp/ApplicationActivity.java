@@ -169,4 +169,14 @@ public class ApplicationActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        int index = sharedDataManager.pager.getCurrentItem();
+        if (index>0) {
+            Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+            sharedDataManager.pager.setAnimation(animPushUp);
+            sharedDataManager.pager.setCurrentItem(index-1,true);
+        }
+        else { finish();}
+    }
 }

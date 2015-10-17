@@ -96,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/bottom_panel">
+            android:background="@drawable/botom_2">
             <LinearLayout
                 android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
@@ -119,7 +119,7 @@
                     android:fontFamily="sans-serif"
                     android:textSize="13dp"
                     android:textColor="#69bc63"
-                    android:text="Amount will be credit in almost 30 mins"/>
+                    android:text="Amount will be credited in you A/C in less than 30 mins*"/>
                 </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -142,7 +142,7 @@
                         android:fontFamily="sans-serif"
                         android:textSize="13dp"
                         android:textColor="#69bc63"
-                        android:text="This loan was booked at 1024% Representative APR"/>
+                        android:text="Representative APR of the Loan booked : 1024%"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

@@ -132,7 +132,7 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
                         Log.v("FB exp:", exception.toString());
                     }
                 });
-        callbackManager.onActivityResult(100,101,getIntent());
+        callbackManager.onActivityResult(100, 101, getIntent());
 
     }
 
@@ -206,11 +206,11 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
         try {
             sharedDataManager.applicationData = new DataLayer(jsonObject);
             if (sharedDataManager.applicationData.pullSuccess) {
-                Intent intent = new Intent(this, ApplicationActivity.class);
+                Intent intent = new Intent(this, dashboard.class);
                 startActivity(intent);
             }
             else {
-                showAlertMessage("Login Failed","User name and Password combination did not match. " +
+                showAlertMessage("Login Failed", "User name and Password combination did not match. " +
                         "Please try again.");
             }
         }catch (Exception e){
