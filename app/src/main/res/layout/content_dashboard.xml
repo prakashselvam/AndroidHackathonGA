@@ -86,12 +86,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sanchit.mehta@gmail.com"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/existing_application"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@drawable/border"
@@ -115,7 +114,7 @@
                 android:text="Hey ! We see that you left your application incomplete last time."
                 />
             <LinearLayout
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:padding="5dp"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -210,8 +209,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:visibility="visible">
+        android:visibility="gone"
+        android:orientation="horizontal">
         <LinearLayout
             android:padding="5dp"
             android:orientation="vertical"
@@ -226,8 +225,9 @@
                 android:text="Hey ! You are eligible to apply for a Lending Stream loan."
                 />
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:paddingTop="5dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/new_app"
                 android:layout_marginRight="10dp"
                 android:layout_gravity="center"/>
@@ -235,7 +235,7 @@
                 android:layout_gravity="center"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif"
                 android:gravity="center_vertical|center_horizontal"
                 android:textColor="#ffffff"
@@ -243,7 +243,6 @@
                 android:height="30dp"
                 android:background="#3a99d9"
                 android:alpha="0.8"
-                android:layout_marginBottom="10dp"
                 android:text= "Start a New Loan Application"
                 android:onClick="start_application"/>
         </LinearLayout>

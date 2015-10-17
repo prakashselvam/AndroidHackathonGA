@@ -66,5 +66,6 @@ public class IntroFragment extends Fragment{
         img.startAnimation(animFadein);
         return v;
     }
+    
 
 }

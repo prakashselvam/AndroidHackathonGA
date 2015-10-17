@@ -24,8 +24,8 @@ public class dashboard extends Activity {
         TextView user_name=(TextView) findViewById(R.id.user_name);
         TextView user_email=(TextView) findViewById(R.id.user_email);
         Button avatar=(Button) findViewById(R.id.avatar_btn);
-        String state = "0";
-        String Amount="$ 25.00";
+        String state = "4";
+        String Amount="$ 75.00";
         String Date="25/09/2015";
         String salutation = "Mr";
         //Fill the Data ----- Prakash************
@@ -36,6 +36,7 @@ public class dashboard extends Activity {
             state = sharedDataManager.applicationData.state;
             Amount = sharedDataManager.applicationData.ReqLoanAmt;
             Date="25/09/2015";
+            state = "3";
             salutation = sharedDataManager.applicationData.salutation;
         }
         else {
@@ -56,12 +57,11 @@ public class dashboard extends Activity {
             avatar.setBackgroundResource(R.drawable.avatar_f);
         }
         if(state.equals("0")){
-            View existing_comp = findViewById(R.id.existing_application);
-            existing_comp.setVisibility(View.GONE);
-            View new_app = findViewById(R.id.new_application);
-            new_app.setVisibility(View.VISIBLE);
+            LinearLayout existing_application_view =(LinearLayout) findViewById(R.id.existing_application);
+            existing_application_view.setVisibility(View.GONE);
+            LinearLayout  new_application_view = (LinearLayout) findViewById(R.id.new_application);
+            new_application_view.setVisibility(View.VISIBLE);
         }else if(state.equals("1")){
-            //pass
             TextView amount=(TextView) findViewById(R.id.cust_amount);
             TextView app_date=(TextView) findViewById(R.id.cust_date);
             amount.setText(Amount);
