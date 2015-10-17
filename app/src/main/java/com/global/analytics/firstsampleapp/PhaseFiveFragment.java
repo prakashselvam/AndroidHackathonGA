@@ -38,10 +38,7 @@ public class PhaseFiveFragment extends Fragment {
     int mCurrentPage;
     private PieChart mChart;
     protected String[] mParties = new String[] {
-            "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
-            "Party I", "Party J", "Party K", "Party L", "Party M", "Party N", "Party O", "Party P",
-            "Party Q", "Party R", "Party S", "Party T", "Party U", "Party V", "Party W", "Party X",
-            "Party Y", "Party Z"
+            "Rent", "Loans", "Bills", "Transaport", "Food", "Others",
     };
 
     @Override
@@ -116,7 +113,7 @@ public class PhaseFiveFragment extends Fragment {
         mChart.setRotationAngle(0);
         // enable rotation of the chart by touch
         mChart.setRotationEnabled(true);
-        setData(3, 100);
+        setData(5, 100);
 
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
 

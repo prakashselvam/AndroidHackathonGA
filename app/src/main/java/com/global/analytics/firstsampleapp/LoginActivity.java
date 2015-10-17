@@ -103,7 +103,7 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
         tv.setText(Html.fromHtml(getString(R.string.sign_up_text)));
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions(Arrays.asList("public_profile", "user_friends"));
+        loginButton.setReadPermissions("user_friends");
         // If using in a fragment
         //loginButton.setFragment(this);
         // Other app specific specialization
