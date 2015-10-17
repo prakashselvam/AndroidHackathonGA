@@ -36,6 +36,7 @@ import java.util.List;
  */
 public class PhaseFiveFragment extends Fragment {
 
+    int[] expenses;
     int mCurrentPage;
     View v;
     private PieChart mChart;
@@ -46,7 +47,9 @@ public class PhaseFiveFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        expenses=new int[6];
+        for(int i=0;i<6;i++)
+            expenses[i]=0;
         /** Getting the arguments to the Bundle object */
         Bundle data = getArguments();
 
@@ -57,7 +60,8 @@ public class PhaseFiveFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        for(int i=0;i<6;i++)
+            expenses[i]=0;
         v = inflater.inflate(R.layout.content_phase_five, container,false);
 //        List<PacpieSlice> slices =new ArrayList<>();
 
@@ -115,7 +119,9 @@ public class PhaseFiveFragment extends Fragment {
         mChart.setRotationAngle(0);
         // enable rotation of the chart by touch
         mChart.setRotationEnabled(true);
-        setData(5, 100);
+        mChart.setBackgroundResource(R.color.pie_chart);
+
+        setData(5, expensesSum());
 
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
 
@@ -156,6 +162,87 @@ public class PhaseFiveFragment extends Fragment {
                 "£ 401-450", "£ 451-500"));
         Other.attachDataSource(dataset6);
 
+
+
+        Rent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                expenses[0]=position;
+                setData(5,expensesSum());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Loans.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                expenses[1]=position;
+                setData(5,expensesSum());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Bills.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                expenses[2]=position;
+                setData(5,expensesSum());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Transportation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                expenses[3]=position;
+                setData(5,expensesSum());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Food.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                expenses[4]=position;
+                setData(5,expensesSum());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        Other.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                expenses[5]=position;
+                setData(5,expensesSum());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         if (mCurrentPage == 1) {
 
         }else if (mCurrentPage == 2) {
@@ -165,6 +252,17 @@ public class PhaseFiveFragment extends Fragment {
         }
         return v;
     }
+
+    public int expensesSum(){
+        int sum=0;
+        for(int i=0;i<6;i++)
+            sum+=expenses[i];
+
+        return sum;
+    }
+
+
+
     private void setData(int count, float range) {
 
         float mult = range;
@@ -175,15 +273,17 @@ public class PhaseFiveFragment extends Fragment {
         // xIndex (even if from different DataSets), since no values can be
         // drawn above each other.
         for (int i = 0; i < count + 1; i++) {
-            yVals1.add(new Entry((float) (Math.random() * mult) + mult / 5, i));
+            if(expenses[i]>0)
+                yVals1.add(new Entry((float) (expenses[i]) , i));
         }
 
         ArrayList<String> xVals = new ArrayList<String>();
 
         for (int i = 0; i < count + 1; i++)
-            xVals.add(mParties[i % mParties.length]);
+            if(expenses[i]>0)
+                xVals.add(mParties[i % mParties.length]);
 
-        PieDataSet dataSet = new PieDataSet(yVals1, "Election Results");
+        PieDataSet dataSet = new PieDataSet(yVals1, "Monthly Expenses");
         dataSet.setSliceSpace(2f);
         dataSet.setSelectionShift(5f);
 

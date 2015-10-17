@@ -35,4 +35,6 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.5'
     compile 'io.card:android-sdk:5.+'
+    compile 'com.wrapp.floatlabelededittext:library:0.0.6'
+
 }
