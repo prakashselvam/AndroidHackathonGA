@@ -207,6 +207,9 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
             sharedDataManager.applicationData = new DataLayer(jsonObject);
             if (sharedDataManager.applicationData.pullSuccess) {
                 sharedDataManager.applicationData.state = "1";
+                MyClass obj = new MyClass(this);
+                DataLayer data = obj.getObject();
+                if (data!=null) sharedDataManager.applicationData = data;
                 Intent intent = new Intent(this, dashboard.class);
                 startActivity(intent);
             }

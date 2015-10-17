@@ -3,11 +3,12 @@ package com.global.analytics.firstsampleapp;
 /**
  * Created by senthilraj on 17-10-2015.
  */
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FormFieldValidation {
+public class FormFieldValidation implements Serializable {
     public boolean isNumber(String value) {
         try
         {
