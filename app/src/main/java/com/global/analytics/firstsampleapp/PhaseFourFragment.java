@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -70,5 +71,27 @@ public class PhaseFourFragment extends Fragment {
         Animation animPushUp = AnimationUtils.loadAnimation(this.getActivity(), R.anim.fade_in);
 
         v.setAnimation(animPushUp);
+    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        unbindDrawables(v);
+        System.gc();
+    }
+    private void unbindDrawables(View view)
+    {
+        try {
+            if (view.getBackground() != null) {
+                view.getBackground().setCallback(null);
+            }
+            if (view instanceof ViewGroup && !(view instanceof AdapterView)) {
+                for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                    unbindDrawables(((ViewGroup) view).getChildAt(i));
+                }
+                ((ViewGroup) view).removeAllViews();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

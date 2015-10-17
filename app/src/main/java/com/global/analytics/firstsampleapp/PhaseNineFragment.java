@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -16,7 +17,7 @@ import java.util.List;
 public class PhaseNineFragment   extends Fragment {
 
     int mCurrentPage;
-
+    View v;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class PhaseNineFragment   extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_phase_nine, container,false);
+        v = inflater.inflate(R.layout.fragment_phase_nine, container,false);
 
 
         if (mCurrentPage == 1) {
@@ -44,5 +45,25 @@ public class PhaseNineFragment   extends Fragment {
         }
         return v;
     }
-
+    public void onDestroy(){
+        super.onDestroy();
+        unbindDrawables(v);
+        System.gc();
+    }
+    private void unbindDrawables(View view)
+    {
+        try {
+            if (view.getBackground() != null) {
+                view.getBackground().setCallback(null);
+            }
+            if (view instanceof ViewGroup && !(view instanceof AdapterView)) {
+                for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                    unbindDrawables(((ViewGroup) view).getChildAt(i));
+                }
+                ((ViewGroup) view).removeAllViews();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

@@ -11,6 +11,7 @@ import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -36,6 +37,7 @@ import java.util.List;
 public class PhaseFiveFragment extends Fragment {
 
     int mCurrentPage;
+    View v;
     private PieChart mChart;
     protected String[] mParties = new String[] {
             "Rent", "Loans", "Bills", "Transaport", "Food", "Others",
@@ -56,7 +58,7 @@ public class PhaseFiveFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.content_phase_five, container,false);
+        v = inflater.inflate(R.layout.content_phase_five, container,false);
 //        List<PacpieSlice> slices =new ArrayList<>();
 
 //        PacpieSlice slice1 = new PacpieSlice();
@@ -219,5 +221,27 @@ public class PhaseFiveFragment extends Fragment {
         mChart.highlightValues(null);
 
         mChart.invalidate();
+    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        unbindDrawables(v);
+        System.gc();
+    }
+    private void unbindDrawables(View view)
+    {
+        try {
+            if (view.getBackground() != null) {
+                view.getBackground().setCallback(null);
+            }
+            if (view instanceof ViewGroup && !(view instanceof AdapterView)) {
+                for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                    unbindDrawables(((ViewGroup) view).getChildAt(i));
+                }
+                ((ViewGroup) view).removeAllViews();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

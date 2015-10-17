@@ -107,9 +107,7 @@ public class ApplicationActivity extends AppCompatActivity {
         sharedDataManager.pager.setCurrentItem(9,true);
     }
     public void phasetengo(View view){
-        Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        sharedDataManager.pager.setAnimation(animPushUp);
-        sharedDataManager.pager.setCurrentItem(10,true);
+        finish();
     }
 //    public void phasesixgo(View view){
 //        Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);

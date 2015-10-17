@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -16,7 +17,7 @@ import java.util.List;
  * Created by Prakash on 16/10/15.
  */
 public class PhaseThreeFragment extends Fragment {
-
+    View v;
     int mCurrentPage;
 
     @Override
@@ -34,7 +35,7 @@ public class PhaseThreeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.content_phase_three, container,false);
+        v = inflater.inflate(R.layout.content_phase_three, container,false);
 
         NiceSpinner county = (NiceSpinner) v.findViewById(R.id.county);
         List<String> dataset = new LinkedList<>(Arrays.asList("County", "Angus", "Berkshire", "Bristol", "Cheshire"));
@@ -62,5 +63,26 @@ public class PhaseThreeFragment extends Fragment {
         }
         return v;
     }
-
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        unbindDrawables(v);
+        System.gc();
+    }
+    private void unbindDrawables(View view)
+    {
+        try {
+            if (view.getBackground() != null) {
+                view.getBackground().setCallback(null);
+            }
+            if (view instanceof ViewGroup && !(view instanceof AdapterView)) {
+                for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                    unbindDrawables(((ViewGroup) view).getChildAt(i));
+                }
+                ((ViewGroup) view).removeAllViews();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -100,7 +101,7 @@ public class PhaseSevenFragment  extends Fragment implements SeekBar.OnSeekBarCh
         int amount = start + ((progress * 14) / 10) * 10;
         System.out.println(finalloanamount);
         String amountString = Integer.toString(amount);
-        finalloanamount.setText("£ "+amountString);
+        finalloanamount.setText("£ " + amountString);
     }
 
     @Override
@@ -112,5 +113,25 @@ public class PhaseSevenFragment  extends Fragment implements SeekBar.OnSeekBarCh
     public void onStopTrackingTouch(SeekBar seekBar) {
 
     }
-
+    public void onDestroy(){
+        super.onDestroy();
+        unbindDrawables(v);
+        System.gc();
+    }
+    private void unbindDrawables(View view)
+    {
+        try {
+            if (view.getBackground() != null) {
+                view.getBackground().setCallback(null);
+            }
+            if (view instanceof ViewGroup && !(view instanceof AdapterView)) {
+                for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                    unbindDrawables(((ViewGroup) view).getChildAt(i));
+                }
+                ((ViewGroup) view).removeAllViews();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

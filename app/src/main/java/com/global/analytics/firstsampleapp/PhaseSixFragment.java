@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 import java.util.Arrays;
@@ -19,6 +20,7 @@ import java.util.List;
 public class PhaseSixFragment  extends Fragment {
 
     int mCurrentPage;
+    View v;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,7 @@ public class PhaseSixFragment  extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.content_phase_six, container,false);
+        v = inflater.inflate(R.layout.content_phase_six, container,false);
         NiceSpinner Debitcardtype = (NiceSpinner) v.findViewById(R.id.Debitcardtype);
         List<String> dataset5 = new LinkedList<>(Arrays.asList("Debit Card Type","VISA Card",
                 "Master Card"));
@@ -50,5 +52,26 @@ public class PhaseSixFragment  extends Fragment {
         }
         return v;
     }
-
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        unbindDrawables(v);
+        System.gc();
+    }
+    private void unbindDrawables(View view)
+    {
+        try {
+            if (view.getBackground() != null) {
+                view.getBackground().setCallback(null);
+            }
+            if (view instanceof ViewGroup && !(view instanceof AdapterView)) {
+                for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                    unbindDrawables(((ViewGroup) view).getChildAt(i));
+                }
+                ((ViewGroup) view).removeAllViews();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
