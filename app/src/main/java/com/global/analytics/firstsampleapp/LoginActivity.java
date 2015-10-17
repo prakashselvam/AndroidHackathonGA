@@ -163,7 +163,7 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
             String userName = txf1.getText().toString().trim();
             String passWord = txf2.getText().toString();
             sharedDataManager.Username = userName;
-            Intent intent = new Intent(this,ApplicationActivity.class);
+            Intent intent = new Intent(this,DrawerActivity.class);
             startActivity(intent);
 //            if (userName.length() > 0 && passWord.length() > 0) {
 //                lindicator = new loading_indicator();
