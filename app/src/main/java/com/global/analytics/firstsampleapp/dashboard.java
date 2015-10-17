@@ -1,12 +1,14 @@
 package com.global.analytics.firstsampleapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,12 +19,11 @@ public class dashboard extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
 
         TextView user_name=(TextView) findViewById(R.id.user_name);
         TextView user_email=(TextView) findViewById(R.id.user_email);
-        ImageView avatar=(ImageView) findViewById(R.id.avatar_btn);
+        Button avatar=(Button) findViewById(R.id.avatar_btn);
 
         //Fill the Data ----- Prakash************
 
@@ -37,7 +38,7 @@ public class dashboard extends Activity {
 
 
         if(salutation=="Ms" || salutation=="Mrs"){
-            avatar.setImageResource(R.drawable.avatar_f);
+            avatar.setBackgroundResource(R.drawable.avatar_f);
         }
         if(state=="0"){
             LinearLayout existing_comp =(LinearLayout) findViewById(R.id.existing_application);
@@ -73,14 +74,12 @@ public class dashboard extends Activity {
             app_date.setText(Date);
         }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
     }
 
+    public void start_application(View v){
+        Intent intent = new Intent(this,ApplicationActivity.class);
+        startActivity(intent);
+
+    }
 }
