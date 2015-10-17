@@ -39,6 +39,7 @@ public class PhaseSevenFragment   extends Fragment {
                 "VISA Debit", "MASTER Debit"));
         Debitcardtype.attachDataSource(dataset);
 
+
         if (mCurrentPage == 1) {
 
         }else if (mCurrentPage == 2) {
