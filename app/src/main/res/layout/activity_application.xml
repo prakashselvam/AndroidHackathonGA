@@ -2,10 +2,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:id="@+id/topIcons"
+        android:visibility="invisible">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/avatar"
+            android:layout_marginRight="5dp"/>
+        <View
+            android:layout_width="20dp"
+            android:layout_height="4dp"
+            android:background="@color/dark_grey"
+            android:layout_marginRight="5dp"/>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/home"
+            android:layout_marginRight="5dp"/>
+        <View
+            android:layout_width="20dp"
+            android:layout_height="4dp"
+            android:background="@color/dark_grey"
+            android:layout_marginRight="5dp"/>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/office_bag"
+            android:layout_marginRight="5dp"/>
+        <View
+            android:layout_width="20dp"
+            android:layout_height="4dp"
+            android:background="@color/dark_grey"
+            android:layout_marginRight="5dp"/>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/home"
+            android:layout_marginRight="5dp"/>
+        <View
+            android:layout_width="20dp"
+            android:layout_height="4dp"
+            android:background="@color/dark_grey"
+            android:layout_marginRight="5dp"/>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/home"
+            android:layout_marginRight="5dp"/>
+    </LinearLayout>
+
+
 </RelativeLayout>
