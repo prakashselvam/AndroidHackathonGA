@@ -36,15 +36,15 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:src="@drawable/avatar"/>
+                android:src="@drawable/agreement"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:fontFamily="sans-serif"
-                android:textSize="15dp"
+                android:textSize="17dp"
                 android:textColor="@color/dark_grey"
-                android:text="Bank Account Details"/>
+                android:text="SECCI Agreement"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,42 +53,31 @@
             android:layout_marginTop="2dp"
             android:layout_marginBottom="10dp">
         </LinearLayout>
-
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="210dp"></ScrollView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:text="Please enter your initials to agree with the SECCI agreement"/>
         <EditText
-            android:id="@+id/BankSortCode"
+            android:id="@+id/secci_esign"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/spinner_drawable"
-            android:hint="Bank Sort Code"
+            android:hint="Initials"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:fontFamily="sans-serif"
             android:textSize="15dp"
             android:ellipsize="end"
             android:singleLine="true"
             android:textColor="@color/dark_grey"
             android:paddingLeft="10dp"/>
-        <EditText
-            android:id="@+id/BankAccountNumber"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/spinner_drawable"
-            android:hint="Bank Account Number"
-            android:fontFamily="sans-serif"
-            android:textSize="15dp"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:textColor="@color/dark_grey"
-            android:paddingLeft="10dp"/>
-
-        <com.global.analytics.firstsampleapp.NiceSpinner
-            android:id="@+id/Debitcardtype"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:fontFamily="sans-serif"
-            android:textSize="15dp"
-            android:textColor="@color/dark_grey"
-            android:layout_marginBottom="10dp"/>
 
 
         <Button

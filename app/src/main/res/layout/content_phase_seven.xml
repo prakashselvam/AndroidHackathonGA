@@ -33,65 +33,105 @@
             android:paddingTop="20dp"
             >
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:gravity="center"
-                android:src="@drawable/avatar"/>
+                android:src="@drawable/decision"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="sans-serif"
-                android:textSize="15dp"
+                android:textSize="17dp"
                 android:textColor="@color/dark_grey"
-                android:text="Bank Account Details"/>
+                android:text="Your Loan Decision"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/light_grey"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginTop="2dp">
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/BankSortCode"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/spinner_drawable"
-            android:hint="Bank Sort Code"
-            android:fontFamily="sans-serif"
-            android:textSize="15dp"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:textColor="@color/dark_grey"
-            android:paddingLeft="10dp"/>
-        <EditText
-            android:id="@+id/BankAccountNumber"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/spinner_drawable"
-            android:hint="Bank Account Number"
-            android:fontFamily="sans-serif"
-            android:textSize="15dp"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:textColor="@color/dark_grey"
-            android:paddingLeft="10dp"/>
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/sorry"
+            android:layout_marginTop="20dp"
+            android:id="@+id/reject_img"
+            android:visibility="gone"/>
 
-        <com.global.analytics.firstsampleapp.NiceSpinner
-            android:id="@+id/Debitcardtype"
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/approved"
+            android:layout_marginTop="20dp"
+            android:id="@+id/approved_img"/>
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="18dp"
+                android:fontFamily="sans-serif"
+                android:text="Congratulations !!!"
+                />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="12dp"
+                android:fontFamily="sans-serif"
+                android:text="You have been approved for £ 100"
+                />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_height="1dp"
+            android:background="@color/light_grey"
+            android:layout_marginTop="2dp">
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
-            android:textSize="15dp"
-            android:textColor="@color/dark_grey"
-            android:layout_marginBottom="10dp"/>
-
-
+            android:text="Choose an amount to book the loan"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif"
+            android:text="£ 100"/>
+        <SeekBar
+            android:layout_gravity="center"
+            android:id="@+id/seekBar1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:progressDrawable="@drawable/styled_progress"
+            android:thumb="@drawable/thumb"
+            android:indeterminate="false" />
         <Button
+            android:id="@+id/btn_approved"
             android:layout_gravity="center"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -106,8 +146,26 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="10dp"
-            android:text= "Next"
-            android:onClick="gotoCardActivity"/>
-
+            android:text= "Book Loan"
+            android:onClick="goToSECCI"/>
+        <Button
+            android:id="@+id/btn_rejected"
+            android:layout_gravity="center"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:height="30dp"
+            android:background="#3a99d9"
+            android:alpha="0.8"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            android:text= "Close"
+            android:onClick="gotoHome"/>
     </LinearLayout>
 </LinearLayout>
