@@ -36,7 +36,7 @@ public class dashboard extends Activity {
             state = sharedDataManager.applicationData.state;
             Amount = sharedDataManager.applicationData.ReqLoanAmt;
             Date="25/09/2015";
-            state = "3";
+            state = sharedDataManager.applicationData.state;
             salutation = sharedDataManager.applicationData.salutation;
         }
         else {
