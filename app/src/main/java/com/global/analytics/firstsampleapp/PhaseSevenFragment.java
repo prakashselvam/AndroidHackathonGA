@@ -63,8 +63,8 @@ public class PhaseSevenFragment  extends Fragment implements SeekBar.OnSeekBarCh
         mybar = (SeekBar) v.findViewById(R.id.seekBar2);
         finalloanamount = (TextView) v.findViewById(R.id.finalloanamount);
         Animation animFadeIn = AnimationUtils.loadAnimation(this.getContext(),R.anim.fade_in_fast);
-        String status="Approved";
-        if(status=="Approved"){
+        String status="Rejected";
+        if(status.equals("Approved")){
             Animation animPushUp = AnimationUtils.loadAnimation(this.getContext(),R.anim.push_up);
             ImageView success = (ImageView) v.findViewById(R.id.approved_img);
             LinearLayout success_layout = (LinearLayout) v.findViewById(R.id.success_layout);

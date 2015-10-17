@@ -14,58 +14,73 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class dashboard extends Activity {
-
+    SharedDataManager sharedDataManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-
+        sharedDataManager = SharedDataManager.getInstance(this);
         TextView user_name=(TextView) findViewById(R.id.user_name);
         TextView user_email=(TextView) findViewById(R.id.user_email);
         Button avatar=(Button) findViewById(R.id.avatar_btn);
-
-        //Fill the Data ----- Prakash************
-
-        String state="0";
-        user_name.setText("Sanchit Mehta");
-        user_email.setText("sanchit@gmail.com");
+        String state = "0";
         String Amount="$ 25.00";
         String Date="25/09/2015";
         String salutation = "Mr";
+        //Fill the Data ----- Prakash************
+        if (sharedDataManager.applicationData.pullSuccess){
+            user_name.setText(sharedDataManager.applicationData.first_name+" "
+                    +sharedDataManager.applicationData.last_name);
+            user_email.setText(sharedDataManager.applicationData.email_id);
+            state = sharedDataManager.applicationData.state;
+            Amount = sharedDataManager.applicationData.ReqLoanAmt;
+            Date="25/09/2015";
+            salutation = sharedDataManager.applicationData.salutation;
+        }
+        else {
+            user_name.setText("Guest User");
+            user_email.setText("Guest@guest.com");
+            state = "0";
+            Amount = "";
+            Date="";
+            salutation = "Ms";
+        }
+
+
 
         ////************************************
 
 
-        if(salutation=="Ms" || salutation=="Mrs"){
+        if(salutation=="Ms" || salutation=="Mrs" || salutation=="Miss"){
             avatar.setBackgroundResource(R.drawable.avatar_f);
         }
-        if(state=="0"){
-            LinearLayout existing_comp =(LinearLayout) findViewById(R.id.existing_application);
+        if(state.equals("0")){
+            View existing_comp = findViewById(R.id.existing_application);
             existing_comp.setVisibility(View.GONE);
-            LinearLayout new_app =(LinearLayout) findViewById(R.id.new_application);
-            existing_comp.setVisibility(View.VISIBLE);
-        }else if(state=="1"){
+            View new_app = findViewById(R.id.new_application);
+            new_app.setVisibility(View.VISIBLE);
+        }else if(state.equals("1")){
             //pass
             TextView amount=(TextView) findViewById(R.id.cust_amount);
             TextView app_date=(TextView) findViewById(R.id.cust_date);
             amount.setText(Amount);
             app_date.setText(Date);
-        }else if(state=="2"){
+        }else if(state.equals("2")){
             ImageView progress =(ImageView) findViewById(R.id.app_progress_img);
             progress.setImageResource(R.drawable.forty);
             TextView amount=(TextView) findViewById(R.id.cust_amount);
             TextView app_date=(TextView) findViewById(R.id.cust_date);
             amount.setText(Amount);
             app_date.setText(Date);
-        }else if(state=="3"){
+        }else if(state.equals("3")){
             ImageView progress =(ImageView) findViewById(R.id.app_progress_img);
             progress.setImageResource(R.drawable.sixty);
             TextView amount=(TextView) findViewById(R.id.cust_amount);
             TextView app_date=(TextView) findViewById(R.id.cust_date);
             amount.setText(Amount);
             app_date.setText(Date);
-        }else if(state=="4"){
+        }else if(state.equals("4")){
             ImageView progress =(ImageView) findViewById(R.id.app_progress_img);
             progress.setImageResource(R.drawable.eighty);
             TextView amount=(TextView) findViewById(R.id.cust_amount);

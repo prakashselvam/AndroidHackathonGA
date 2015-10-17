@@ -206,16 +206,25 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
         try {
             sharedDataManager.applicationData = new DataLayer(jsonObject);
             if (sharedDataManager.applicationData.pullSuccess) {
+                sharedDataManager.applicationData.state = "1";
                 Intent intent = new Intent(this, dashboard.class);
                 startActivity(intent);
             }
             else {
+                sharedDataManager.applicationData.state = "0";
                 showAlertMessage("Login Failed", "User name and Password combination did not match. " +
                         "Please try again.");
             }
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+    public void signup(View view){
+        sharedDataManager.applicationData = new DataLayer();
+        sharedDataManager.applicationData.pullSuccess = false;
+        sharedDataManager.applicationData.state = "0";
+        Intent intent = new Intent(this, dashboard.class);
+        startActivity(intent);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -58,7 +58,8 @@ public class DataLayer {
     public boolean pullSuccess = false;
     public String ReqLoanAmt = null;
     public int salutationindex,marital_statusindex,dob_dayindex,dob_monthindex,dob_yearindex;
-
+    public String state;
+    public DataLayer(){}
     public DataLayer(JSONObject jsonObject){
         try {
             JSONObject ExtPostTransaction = jsonObject.getJSONObject("ExtPostTransaction");
