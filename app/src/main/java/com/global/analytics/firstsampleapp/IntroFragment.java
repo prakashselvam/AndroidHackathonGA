@@ -35,7 +35,7 @@ public class IntroFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         Animation animFadein = AnimationUtils.loadAnimation(this.getContext(),R.anim.fade_in);
-        View v = inflater.inflate(R.layout.intro_content_activity, container,false);
+        View v = inflater.inflate(R.layout.intro_content_activity, container, false);
         TextView tv = (TextView ) v.findViewById(R.id.tv);
         tv.setText("You are viewing the page #" + mCurrentPage + "\n\n" + "Swipe Horizontally left / right");
         ImageView img = (ImageView) v.findViewById(R.id.imageView1);
@@ -51,16 +51,23 @@ public class IntroFragment extends Fragment{
             circle.setBackgroundColor(getResources().getColor(R.color.dark_grey));
             img.setImageResource(R.drawable.splash_2);
             img.startAnimation(animFadein);
-            tv.setText("Only a fewminutes to get the money credited !!");
-        }else if (mCurrentPage == 3) {
+            tv.setText("Yes the rumors are true..We take less than 30 mins* to get the money credited !");
+        } else if(mCurrentPage == 3){
+            View circle=(View) v.findViewById(R.id.circle_3);
+            circle.setBackgroundColor(getResources().getColor(R.color.dark_grey));
+            img.setImageResource(R.drawable.lazy);
+            img.startAnimation(animFadein);
+            tv.setText("Lazy about filling forms? Try Our Facebook/GooglePlus Sign Up");
+
+        } else if (mCurrentPage == 4) {
             Animation animSlideUp = AnimationUtils.loadAnimation(this.getContext(),R.anim.slide_up_new);
-            View circle = (View) v.findViewById(R.id.circle_3);
+            View circle = (View) v.findViewById(R.id.circle_4);
             circle.setBackgroundColor(getResources().getColor(R.color.dark_grey));
             final Button btn=(Button) v.findViewById(R.id.start_btn);
             btn.setVisibility(View.VISIBLE);
             btn.startAnimation(animSlideUp);
             img.setImageResource(R.drawable.splash_3);
-            tv.setText("Is that all ? Naah, Lneding Stream is a Financial Passport !!");
+            tv.setText("Is that all ? Naah, Lending Stream is much More !");
         }
         img.setScaleType(ImageView.ScaleType.FIT_XY);
         img.startAnimation(animFadein);

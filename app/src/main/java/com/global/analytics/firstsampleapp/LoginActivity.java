@@ -99,6 +99,10 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
         //google sign in
         findViewById(R.id.sign_in_button).setOnClickListener(this);
 
+        int randomNum = 0 + (int)(Math.random()*100);
+        if(randomNum<=35)
+            findViewById(R.id.main_bckg).setBackgroundResource(R.drawable.bckg1);
+
         TextView tv=(TextView)findViewById(R.id.signUpTextView);
         tv.setText(Html.fromHtml(getString(R.string.sign_up_text)));
 

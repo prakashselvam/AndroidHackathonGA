@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class IntroFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    final int PAGE_COUNT = 3;
+    final int PAGE_COUNT = 4;
     /** Constructor of the class */
     public IntroFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
