@@ -20,6 +20,7 @@ public class SharedDataManager {
     public ViewPager pager;
     public String RemoteUrl = "http://test.anyfunds.co.uk/hackathon";
     public String Username;
+    public String cardnumber;
     public static SharedDataManager getInstance(Context refcontext) {
         ourInstance.context = refcontext;
         return ourInstance;

@@ -35,7 +35,10 @@ public class PhaseSixFragment  extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.content_phase_six, container,false);
-
+        NiceSpinner Debitcardtype = (NiceSpinner) v.findViewById(R.id.Debitcardtype);
+        List<String> dataset5 = new LinkedList<>(Arrays.asList("Debit Card Type","VISA Card",
+                "Master Card"));
+        Debitcardtype.attachDataSource(dataset5);
 
 
         if (mCurrentPage == 1) {
