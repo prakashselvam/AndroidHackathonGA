@@ -55,6 +55,7 @@
             android:thumb="@drawable/thumb"
             android:indeterminate="false" />
         <Button
+            android:id="@+id/next"
             android:layout_gravity="center"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent" android:layout_height="wrap_content"

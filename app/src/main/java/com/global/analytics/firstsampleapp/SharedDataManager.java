@@ -2,6 +2,7 @@ package com.global.analytics.firstsampleapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v4.view.ViewPager;
 
 import java.util.Properties;
 
@@ -12,10 +13,12 @@ import java.util.Properties;
 public class SharedDataManager {
     private static SharedDataManager ourInstance = new SharedDataManager();
     public int REQUEST_TIMEOUT_TIME = 60;
+    public DataLayer applicationData;
     public Boolean noInternetConnection = false;
     public Properties LoginProperty;
     public Context context;
-    public String RemoteUrl = "https://test.anyfunds.co.uk/mock";
+    public ViewPager pager;
+    public String RemoteUrl = "http://test.anyfunds.co.uk/hackathon";
     public String Username;
     public static SharedDataManager getInstance(Context refcontext) {
         ourInstance.context = refcontext;

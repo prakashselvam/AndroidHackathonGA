@@ -21,6 +21,10 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
@@ -35,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.Properties;
 
 public class LoginActivity extends Activity implements onTaskCompleted,GoogleApiClient.ConnectionCallbacks,
@@ -64,6 +69,7 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
     public AssetsPropertyReader assetsPropertyReader;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
+    private ProfileTracker profileTracker;
     /* Is there a ConnectionResult resolution in progress? */
     private boolean mIsResolving = false;
 
@@ -97,7 +103,7 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
         tv.setText(Html.fromHtml(getString(R.string.sign_up_text)));
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions("user_friends");
+        loginButton.setReadPermissions(Arrays.asList("public_profile", "user_friends"));
         // If using in a fragment
         //loginButton.setFragment(this);
         // Other app specific specialization
@@ -110,18 +116,24 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         // App code
+                        Profile profile = Profile.getCurrentProfile();
+                        Log.v("FB Profile: ", profile.getName());
                     }
 
                     @Override
                     public void onCancel() {
                         // App code
+                        Log.v("FB exp:", "Cancel");
                     }
 
                     @Override
                     public void onError(FacebookException exception) {
                         // App code
+                        Log.v("FB exp:", exception.toString());
                     }
                 });
+        callbackManager.onActivityResult(100,101,getIntent());
+
     }
 
     @Override
@@ -163,43 +175,45 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
             String userName = txf1.getText().toString().trim();
             String passWord = txf2.getText().toString();
             sharedDataManager.Username = userName;
-            Intent intent = new Intent(this,ApplicationActivity.class);
-            startActivity(intent);
-//            if (userName.length() > 0 && passWord.length() > 0) {
-//                lindicator = new loading_indicator();
-//                lindicator.showIndicator(LoginActivity.this);
-//                String url = sharedDataManager.RemoteUrl + "/authenticate/";
-//                String postData = "";
-//                try {
-//                    postData = "username=" + URLEncoder.encode(userName, "UTF-8") + "&password=" + URLEncoder.encode(passWord, "UTF-8");
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                    postData = "username=" + userName + "&password=" + passWord;
-//                }
-//                Log.v("Post Data", postData);
-//                String notificationName = "LoginCall";
-//                new RequestParser(this.getApplicationContext(), this).execute(url, postData, notificationName, true);
-//            } else {
-//                lindicator.hideIndicator();
-//                showAlertMessage("Email and password cannot be empty.", "Enter Credentials");
-//            }
+//            Intent intent = new Intent(this,ApplicationActivity.class);
+//            startActivity(intent);
+            if (userName.length() > 0 && passWord.length() > 0) {
+                lindicator = new loading_indicator();
+                lindicator.showIndicator(LoginActivity.this);
+                String url = sharedDataManager.RemoteUrl;
+                String postData = "";
+                try {
+                    postData = "<auth><username>"+userName+"</username><password>"+passWord+"</password></auth>";
+                    //postData = "username=" + URLEncoder.encode(userName, "UTF-8") + "&password=" + URLEncoder.encode(passWord, "UTF-8");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    postData = "username=" + userName + "&password=" + passWord;
+                }
+                Log.v("Post Data", postData);
+                String notificationName = "LoginCall";
+                new RequestParser(this.getApplicationContext(), this).execute(url, postData, notificationName, true);
+            } else {
+                lindicator.hideIndicator();
+                showAlertMessage("Email and password cannot be empty.", "Enter Credentials");
+            }
         }catch (Exception e){
             e.printStackTrace();
-            if (lindicator!=null) lindicator.hideIndicator();
+            if (lindicator != null) lindicator.hideIndicator();
             showAlertMessage("Unable to process login, Please try again later.", "Error");
         }
     }
     private void loginCheck(JSONObject jsonObject) {
         try {
-            String result = jsonObject.getString("status");
-            if (result.equals("success")) {
-                sharedDataManager.LoginProperty = new Properties();
-                sharedDataManager.LoginProperty.setProperty("Status", "Success");
-                assetsPropertyReader.writePropertiesToDocs("ViewConfig.properties", sharedDataManager.LoginProperty);
-                Intent intent = new Intent(this, MainActivity.class).putExtra("username","Prakash");
+            sharedDataManager.applicationData = new DataLayer(jsonObject);
+            if (sharedDataManager.applicationData.pullSuccess) {
+                Intent intent = new Intent(this, ApplicationActivity.class);
                 startActivity(intent);
             }
-        }catch (JSONException e){
+            else {
+                showAlertMessage("Login Failed","User name and Password combination did not match. " +
+                        "Please try again.");
+            }
+        }catch (Exception e){
             e.printStackTrace();
         }
     }

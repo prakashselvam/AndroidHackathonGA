@@ -18,15 +18,16 @@ import io.card.payment.CreditCard;
  * Created by Prakash on 16/10/15.
  */
 public class ApplicationActivity extends AppCompatActivity {
-    private ViewPager pager;
     private View topIcons;
     private int MY_SCAN_REQUEST_CODE = 100;
+    private SharedDataManager sharedDataManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application);
+        sharedDataManager = SharedDataManager.getInstance(this);
         /** Getting a reference to the ViewPager defined the layout file */
-        pager = (ViewPager) findViewById(R.id.pager);
+        sharedDataManager.pager = (ViewPager) findViewById(R.id.pager);
         topIcons = findViewById(R.id.topIcons);
         /** Getting fragment manager */
         FragmentManager fm = getSupportFragmentManager();
@@ -35,14 +36,14 @@ public class ApplicationActivity extends AppCompatActivity {
         ApplicationFragmentAdapter pagerAdapter = new ApplicationFragmentAdapter(fm);
 
         /** Setting the pagerAdapter to the pager object */
-        pager.setOnTouchListener(new View.OnTouchListener() {
+        sharedDataManager.pager.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return true;
             }
         });
-        pager.setAdapter(pagerAdapter);
-        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        sharedDataManager.pager.setAdapter(pagerAdapter);
+        sharedDataManager.pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -63,7 +64,7 @@ public class ApplicationActivity extends AppCompatActivity {
         });
     }
     public void gotoCardActivity(View view){
-        pager.setCurrentItem(6, true);
+        sharedDataManager.pager.setCurrentItem(6, true);
 //        Intent scanIntent = new Intent(this, CardIOActivity.class);
 //
 //        // customize these values to suit your needs.
@@ -106,7 +107,7 @@ public class ApplicationActivity extends AppCompatActivity {
                     resultDisplayStr += "Postal Code: " + scanResult.postalCode + "\n";
                     success3 = true;
                 }
-                if (success1 && success2 && success3) pager.setCurrentItem(6,true);
+                if (success1 && success2 && success3) sharedDataManager.pager.setCurrentItem(6,true);
             }
             else {
                 resultDisplayStr = "Scan was canceled.";
@@ -117,54 +118,52 @@ public class ApplicationActivity extends AppCompatActivity {
         // else handle other activity results
     }
     public void phaseonego(View view){
-        Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        pager.setAnimation(animPushUp);
-        pager.setCurrentItem(1, true);
+        
 
     }
     public void phasetwogo(View view){
         Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        pager.setAnimation(animPushUp);
-        pager.setCurrentItem(2,true);
+        sharedDataManager.pager.setAnimation(animPushUp);
+        sharedDataManager.pager.setCurrentItem(2,true);
     }
     public void phasethreego(View view){
         Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        pager.setAnimation(animPushUp);
-        pager.setCurrentItem(3,true);
+        sharedDataManager.pager.setAnimation(animPushUp);
+        sharedDataManager.pager.setCurrentItem(3,true);
     }
     public void phasefourgo(View view){
         Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        pager.setAnimation(animPushUp);
-        pager.setCurrentItem(4,true);
+        sharedDataManager.pager.setAnimation(animPushUp);
+        sharedDataManager.pager.setCurrentItem(4,true);
     }
     public void phasefivego(View view){
         Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        pager.setAnimation(animPushUp);
-        pager.setCurrentItem(5,true);
+        sharedDataManager.pager.setAnimation(animPushUp);
+        sharedDataManager.pager.setCurrentItem(5,true);
     }
     public void phasesevengo(View view){
         Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        pager.setAnimation(animPushUp);
-        pager.setCurrentItem(7,true);
+        sharedDataManager.pager.setAnimation(animPushUp);
+        sharedDataManager.pager.setCurrentItem(7,true);
     }
     public void phaseeightgonow(View view){
         Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        pager.setAnimation(animPushUp);
-        pager.setCurrentItem(8,true); }
+        sharedDataManager.pager.setAnimation(animPushUp);
+        sharedDataManager.pager.setCurrentItem(8,true); }
     public void phaseninego(View view){
         Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        pager.setAnimation(animPushUp);
-        pager.setCurrentItem(9,true);
+        sharedDataManager.pager.setAnimation(animPushUp);
+        sharedDataManager.pager.setCurrentItem(9,true);
     }
     public void phasetengo(View view){
         Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        pager.setAnimation(animPushUp);
-        pager.setCurrentItem(10,true);
+        sharedDataManager.pager.setAnimation(animPushUp);
+        sharedDataManager.pager.setCurrentItem(10,true);
     }
     public void phasesixgo(View view){
         Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
-        pager.setAnimation(animPushUp);
-        pager.setCurrentItem(6,true);
+        sharedDataManager.pager.setAnimation(animPushUp);
+        sharedDataManager.pager.setCurrentItem(6,true);
     }
     public void phasesevengohome(View view){
         finish();

@@ -1,5 +1,8 @@
 package com.global.analytics.firstsampleapp;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by senthilraj on 17-10-2015.
  */
@@ -41,6 +44,7 @@ public class DataLayer {
     public String expense_transport = null;
     public String expense_food = null;
     public String expense_others = null;
+    public String CreditPayments = null;
 
     public String bank_sortcode = null;
     public String bank_account_no = null;
@@ -51,11 +55,68 @@ public class DataLayer {
     public String card_exp_month = null;
     public String card_exp_year = null;
 
+    public boolean pullSuccess = false;
+    public String ReqLoanAmt = null;
+    public int salutationindex,marital_statusindex,dob_dayindex,dob_monthindex,dob_yearindex;
+
+    public DataLayer(JSONObject jsonObject){
+        try {
+            JSONObject ExtPostTransaction = jsonObject.getJSONObject("ExtPostTransaction");
+            JSONObject TransactionData = ExtPostTransaction.getJSONObject("TransactionData");
+            JSONObject CustomerInfo = TransactionData.getJSONObject("CustomerInfo");
+            JSONObject BankInfo = TransactionData.getJSONObject("BankInfo");
+            JSONObject EmployerInfo = TransactionData.getJSONObject("EmployerInfo");
+            JSONObject LoanInfo = TransactionData.getJSONObject("LoanInfo");
+            email_id = CustomerInfo.getString("CustEmail");
+            pullSuccess = true;
+            salutation = CustomerInfo.getString("Title");
+            salutationindex = 1;
+            first_name = CustomerInfo.getString("CustFName");
+            last_name = CustomerInfo.getString("CustLName");
+            marital_status = CustomerInfo.getString("MaritalStatus");
+            marital_statusindex = 1;
+            dob_day = CustomerInfo.getString("CustDOB");
+            dob_month = CustomerInfo.getString("CustDOB");
+            dob_year = CustomerInfo.getString("CustDOB");
+            dob_dayindex = 10;
+            dob_monthindex = 6;
+            dob_yearindex = 20;
+            mobile_no = CustomerInfo.getString("CustMobilePhone");
+
+            post_code = CustomerInfo.getString("Postcode");
+            house_no = CustomerInfo.getString("HomeNumber");
+            street = CustomerInfo.getString("Street");
+            county = CustomerInfo.getString("County");
+            type_of_occupancy = CustomerInfo.getString("HomeStatus");
+
+            employer_name = EmployerInfo.getString("EmpName");
+            income_source = EmployerInfo.getString("TypeOfIncome");
+            income_amount = EmployerInfo.getString("MonthlyIncome");
+            income_per = EmployerInfo.getString("TypeOfIndustry");
+            income_frequency = EmployerInfo.getString("PayFrequency");
+
+            expense_loans = LoanInfo.getString("Mortgage");
+            expense_transport = LoanInfo.getString("TransportCosts");
+            expense_food = LoanInfo.getString("FoodCosts");
+            expense_others = LoanInfo.getString("OtherPayments");
+            CreditPayments = LoanInfo.getString("CreditPayments");
+            ReqLoanAmt = LoanInfo.getString("ReqLoanAmt");
+
+            bank_sortcode = BankInfo.getString("BankSortCode");
+            bank_account_no = BankInfo.getString("AcctNumber");
+            card_type = CustomerInfo.getString("DebitCardType");
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        catch (Exception e){e.printStackTrace();}
+    }
     public FormFieldValidation oFormFieldValidation = new FormFieldValidation();
 
     public String getEmail_id() {
         return email_id;
     }
+
 
     public boolean setEmail_id(String email_id) {
         if (!oFormFieldValidation.isValidEmail(email_id))
