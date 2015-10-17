@@ -173,7 +173,7 @@ public class ApplicationActivity extends AppCompatActivity {
     public void onBackPressed() {
         int index = sharedDataManager.pager.getCurrentItem();
         if (index>0) {
-            Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_left);
+            Animation animPushUp = AnimationUtils.loadAnimation(this, R.anim.slide_right);
             sharedDataManager.pager.setAnimation(animPushUp);
             sharedDataManager.pager.setCurrentItem(index-1,true);
         }
