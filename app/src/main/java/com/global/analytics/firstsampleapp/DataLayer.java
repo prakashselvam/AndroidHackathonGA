@@ -3,11 +3,13 @@ package com.global.analytics.firstsampleapp;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by senthilraj on 17-10-2015.
  */
 
-public class DataLayer {
+public class DataLayer implements Serializable {
 
     public String email_id = null;
     public String passwd = null;
