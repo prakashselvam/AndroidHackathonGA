@@ -90,4 +90,5 @@ public class PhaseOneFragment extends Fragment implements SeekBar.OnSeekBarChang
     public void onStopTrackingTouch(SeekBar seekBar) {
 
     }
+
 }

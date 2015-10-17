@@ -1,14 +1,17 @@
 package com.global.analytics.firstsampleapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+
 
 /**
  * Created by Prakash on 17/10/15.
@@ -16,7 +19,6 @@ import java.util.List;
 public class PhaseSixFragment  extends Fragment {
 
     int mCurrentPage;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +36,6 @@ public class PhaseSixFragment  extends Fragment {
 
         View v = inflater.inflate(R.layout.content_phase_six, container,false);
 
-        NiceSpinner Debitcardtype  = (NiceSpinner) v.findViewById(R.id.Debitcardtype);
-        List<String> dataset = new LinkedList<>(Arrays.asList("Debit card type",
-                "VISA Debit", "MASTER Debit"));
-        Debitcardtype.attachDataSource(dataset);
 
 
         if (mCurrentPage == 1) {
