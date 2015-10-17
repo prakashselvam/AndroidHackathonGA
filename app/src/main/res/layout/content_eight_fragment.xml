@@ -55,7 +55,32 @@
         </LinearLayout>
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="210dp"></ScrollView>
+            android:layout_height="210dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/secci_page1">
+
+            </ImageView>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/secci_page2">
+
+            </ImageView>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/secci_page2">
+
+            </ImageView>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/secci_page3">
+
+            </ImageView>
+        </ScrollView>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
