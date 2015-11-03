@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 repositories { mavenCentral() }
 repositories {
     maven { url "https://jitpack.io" }
+    //maven { url 'https://github.com/taplytics/Taplytics-Android-SDK/raw/master/AndroidStudio/' }
 }
 android {
     compileSdkVersion 23
@@ -26,15 +27,31 @@ android {
 }
 
 dependencies {
+    //compile 'com.android.support:multidex:1.0.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:design:23.0.1'
     compile 'com.facebook.android:facebook-android-sdk:4.7.0'
     compile 'com.google.android.gms:play-services-identity:8.1.0'
     compile 'com.google.android.gms:play-services-plus:8.1.0'
+    //compile 'com.google.android.gms:play-services-fitness:8.1.0'
+    //compile 'com.google.android.gms:play-services-wearable:8.1.0'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.5'
     compile 'io.card:android-sdk:5.+'
     compile 'com.wrapp.floatlabelededittext:library:0.0.6'
-
+//    // Taplytics
+//    compile("com.taplytics.sdk:taplytics:+@aar")
+//
+//    // Dependencies for Taplytics
+//    compile("com.mcxiaoke.volley:library:+")
+//    compile("com.squareup.okhttp:okhttp-urlconnection:+")
+//    compile("com.squareup.okhttp:okhttp:+")
+//    //Excluding org.json due to compiler warnings
+//    compile("com.github.nkzawa:socket.io-client:+") {
+//        exclude group: "org.json"
+//    }
+//    compile("com.github.nkzawa:engine.io-client:+") {
+//        exclude group: "org.json"
+//    }
 }

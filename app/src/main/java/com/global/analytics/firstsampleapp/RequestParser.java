@@ -16,14 +16,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 /**
  * Created by Prakash on 04/02/15.
@@ -212,15 +204,13 @@ public class RequestParser extends AsyncTask {
                     e.printStackTrace();
                 }
                 listener.onTaskCompleted(jsonObj, notification);
-            } else {
-                listener.onTaskCompleted(web_response, notification);
             }
             sharedDataManager = null;
             listener = null;
             context = null;
         }catch (Exception e){
             e.printStackTrace();
-            listener.onTaskCompleted(web_response, notification);
+            //listener.onTaskCompleted(web_response, notification);
         }
     }
 }

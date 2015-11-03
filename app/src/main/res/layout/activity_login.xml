@@ -45,14 +45,9 @@
         android:id="@+id/ll2"
         android:layout_width="279dp"
         android:layout_height="wrap_content"
-        android:paddingBottom="50dp"
-        android:paddingTop="60dp"
-        android:gravity="center_vertical|center_horizontal">
-        <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:visibility="gone" />
-        <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:paddingBottom="30dp"
+        android:paddingTop="50dp"
+        android:gravity="top|center_horizontal">
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -69,7 +64,7 @@
                         android:gravity="center_horizontal"
                         android:textColorHint="#f2f2f2"
                         android:textColor="#ffffff"
-                        android:textSize="15sp"
+                        android:textSize="20sp"
                         android:background="@drawable/textfield_shape"
                         android:layout_marginBottom="2dp"/>
 
@@ -78,7 +73,7 @@
                         android:layout_height="1dp"
                         android:background="@android:color/white"
                         android:alpha="0.8"
-                        android:layout_marginBottom="10dp"/>
+                        android:layout_marginBottom="20dp"/>
 
 
                     <EditText android:id="@+id/password" android:layout_width="match_parent"
@@ -89,7 +84,7 @@
                         android:maxLines="1" android:singleLine="true"
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="5dp"
-                        android:textSize="15sp"
+                        android:textSize="20sp"
                         android:gravity="center_horizontal"
                         android:textColorHint="#f2f2f2"
                         android:background="@drawable/textfield_shape"
@@ -114,7 +109,6 @@
 
                 </LinearLayout>
             </LinearLayout>
-        </ScrollView>
     </LinearLayout>
 
     <LinearLayout
@@ -132,12 +126,14 @@
             android:id="@+id/signUpTextView"
             android:autoLink="web"
             android:textColor="#f2f2f2"
-            android:onClick="signup"/>
+            android:clickable="true"
+            android:onClick="signup"
+            android:padding="5dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
 
         >

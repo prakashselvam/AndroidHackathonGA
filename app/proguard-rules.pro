@@ -15,3 +15,10 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class android.support.v4.app.Fragment { *; }
+-keep class android.support.v4.view.ViewPager
+-keepclassmembers class android.support.v4.view.ViewPager$LayoutParams {*;}
+
+-dontwarn okio.**
+-dontwarn java.nio.file.*
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement

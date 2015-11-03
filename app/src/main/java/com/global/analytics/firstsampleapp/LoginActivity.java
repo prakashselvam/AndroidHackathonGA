@@ -6,6 +6,8 @@ import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,8 +34,12 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Result;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,11 +49,13 @@ import java.util.Arrays;
 import java.util.Properties;
 
 public class LoginActivity extends Activity implements onTaskCompleted,GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,
+        GoogleApiClient.OnConnectionFailedListener, ResultCallback,
         View.OnClickListener {
 
     /* Request code used to invoke sign in user interactions. */
     private static final int RC_SIGN_IN = 0;
+    private static final int RC_FB_SIGNIN = 64206;
+    private boolean done = false;
 
     /* Client used to interact with Google APIs. */
     private GoogleApiClient mGoogleApiClient;
@@ -84,10 +92,11 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Plus.API)
-                .addScope(new Scope(Scopes.PROFILE))
-                .addScope(new Scope(Scopes.EMAIL))
+                .addScope(Plus.SCOPE_PLUS_PROFILE)
+                .addScope(Plus.SCOPE_PLUS_LOGIN)
                 .build();
-
+        PendingResult result = Plus.PeopleApi.loadVisible(mGoogleApiClient, null);
+        result.setResultCallback(this);
         //facebook
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         Log.v("Key: #####  ", FacebookSdk.getApplicationSignature(getApplicationContext()));
@@ -122,6 +131,22 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
                         // App code
                         Profile profile = Profile.getCurrentProfile();
                         Log.v("FB Profile: ", profile.getName());
+                        DataLayer data = new DataLayer();
+                        data.pullSuccess = true;
+                        data.first_name = profile.getFirstName();
+                        data.last_name = profile.getLastName();
+                        data.profilePic = profile.getProfilePictureUri(100, 100).toString();
+                        data.email_id = "";
+                        data.state = "0";
+                        data.ReqLoanAmt = "100";
+                        data.salutation = "Ms";
+                        if (data!=null) {
+                            sharedDataManager.applicationData = data;
+                            MyClass obj = new MyClass(getApplicationContext());
+                            obj.saveObject(sharedDataManager.applicationData);
+                        }
+                        Intent intent = new Intent(getApplicationContext(), dashboard.class);
+                        startActivity(intent);
                     }
 
                     @Override
@@ -136,18 +161,31 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
                         Log.v("FB exp:", exception.toString());
                     }
                 });
-        callbackManager.onActivityResult(100, 101, getIntent());
 
     }
 
     @Override
     public void onStart(){
         super.onStart();
-        mGoogleApiClient.connect();
+        //mGoogleApiClient.connect();
         if(sharedDataManager.checkIfFirstTime()){
             Intent intent = new Intent(this,IntroActivity.class);
             startActivity(intent);
         }
+        else if (AlreadyLoggedIn() && !done){
+            Intent intent = new Intent(this, dashboard.class);
+            startActivity(intent);
+            done = true;
+        }
+    }
+    private boolean AlreadyLoggedIn(){
+        MyClass obj = new MyClass(getApplicationContext());
+        DataLayer data = obj.getObject();
+        if (data!=null) {
+            sharedDataManager.applicationData = data;
+            return true;
+        }
+        return false;
     }
     @Override
     protected void onResume() {
@@ -210,7 +248,7 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
         try {
             sharedDataManager.applicationData = new DataLayer(jsonObject);
             if (sharedDataManager.applicationData.pullSuccess) {
-                sharedDataManager.applicationData.state = "1";
+                sharedDataManager.applicationData.state = "0";
                 MyClass obj = new MyClass(this);
                 DataLayer data = obj.getObject();
                 if (data!=null) sharedDataManager.applicationData = data;
@@ -273,8 +311,23 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
         // onConnected indicates that an account was selected on the device, that the selected
         // account has granted any requested permissions to our app and that we were able to
         // establish a service connection to Google Play services.
-        Log.d("GOOGLE+", "onConnected:" + bundle);
+        Log.d("FACEBOOK+", "onConnected:" + bundle);
         mShouldResolve = false;
+        if (Plus.PeopleApi.getCurrentPerson(mGoogleApiClient) != null) {
+            Person currentPerson = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
+            DataLayer data = new DataLayer();
+            data.pullSuccess = true;
+            data.first_name = currentPerson.getDisplayName();
+            data.last_name = currentPerson.getNickname();
+            data.profilePic = currentPerson.getImage().getUrl();
+            data.email_id = "";
+            data.state = "0";
+            data.ReqLoanAmt = "100";
+            data.salutation = "Mr";
+            if (data!=null) sharedDataManager.applicationData = data;
+            Intent intent = new Intent(getApplicationContext(), dashboard.class);
+            startActivity(intent);
+        }
 
         // Show the signed-in UI
         //showSignedInUI();
@@ -289,7 +342,7 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
         // attempt to resolve any errors that occur.
         mShouldResolve = true;
         mGoogleApiClient.connect();
-
+        loginButton.callOnClick();
         // Show a message to the user that we are signing in.
         //mStatus.setText(R.string.signing_in);
     }
@@ -324,7 +377,11 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("GOOGLE+", "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
-
+        if (requestCode == RC_FB_SIGNIN && resultCode == -1){
+            String dataContent = data.getExtras().toString();
+            Log.v("facebook: ", data.getExtras().toString());
+            callbackManager.onActivityResult(requestCode,resultCode,data);
+        }
         if (requestCode == RC_SIGN_IN) {
             // If the error resolution was not successful we should not resolve further.
             if (resultCode != RESULT_OK) {
@@ -335,6 +392,12 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
             mGoogleApiClient.connect();
         }
     }
+
+    @Override
+    public void onResult(Result result) {
+        Log.v("Reslt google",result.toString());
+    }
+
     class alertDialogOnClickListener implements AlertDialog.OnClickListener {
     public void onClick(DialogInterface dialog, int which) {
         Log.v("First", String.valueOf(which));
@@ -384,7 +447,7 @@ public class LoginActivity extends Activity implements onTaskCompleted,GoogleApi
     }
 
     @Override
-    public void onTaskCompleted(String response, String notification) {
+    public void onTaskCompleted(Drawable response, String notification) {
         return;
     }
 }

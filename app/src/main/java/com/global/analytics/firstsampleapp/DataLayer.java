@@ -1,9 +1,12 @@
 package com.global.analytics.firstsampleapp;
 
+import android.net.Uri;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.net.URI;
 
 /**
  * Created by senthilraj on 17-10-2015.
@@ -61,6 +64,8 @@ public class DataLayer implements Serializable {
     public String ReqLoanAmt = null;
     public int salutationindex,marital_statusindex,dob_dayindex,dob_monthindex,dob_yearindex;
     public String state;
+    public String  profilePic;
+
     public DataLayer(){}
     public DataLayer(JSONObject jsonObject){
         try {

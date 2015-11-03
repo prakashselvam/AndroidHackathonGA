@@ -1,5 +1,7 @@
 package com.global.analytics.firstsampleapp;
 
+import android.graphics.drawable.Drawable;
+
 import org.json.JSONObject;
 
 /**
@@ -7,5 +9,5 @@ import org.json.JSONObject;
  */
 public interface onTaskCompleted {
     void onTaskCompleted(JSONObject jsonObject, String notification);
-    void onTaskCompleted(String response, String notification);
+    void onTaskCompleted(Drawable response, String notification);
 }

@@ -62,7 +62,8 @@ public class PhaseOneFragment extends Fragment implements SeekBar.OnSeekBarChang
             @Override
             public void onClick(View v) {
                 sharedDataManager.applicationData.ReqLoanAmt = amountString;
-                MyClass obj = new MyClass(getActivity());
+                sharedDataManager.applicationData.state = "1";
+                MyClass obj = new MyClass(getActivity().getApplicationContext());
                 obj.saveObject(sharedDataManager.applicationData);
                 Animation animPushUp = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_left);
                 sharedDataManager.pager.setAnimation(animPushUp);

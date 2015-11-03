@@ -148,7 +148,7 @@ public class PhaseTwoFragment extends Fragment {
                 sharedDataManager.applicationData.last_name = LastName.getText().toString();
                 sharedDataManager.applicationData.email_id = emailid.getText().toString();
                 sharedDataManager.applicationData.mobile_no = mobileNumber.getText().toString();
-                sharedDataManager.applicationData.state = "1";
+                sharedDataManager.applicationData.state = "2";
                 MyClass obj = new MyClass(getActivity());
                 obj.saveObject(sharedDataManager.applicationData);
                 Animation animPushUp = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_left);
