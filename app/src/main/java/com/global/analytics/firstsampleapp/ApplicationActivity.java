@@ -107,6 +107,7 @@ public class ApplicationActivity extends AppCompatActivity {
         sharedDataManager.pager.setCurrentItem(9,true);
     }
     public void phasetengo(View view){
+        sharedDataManager.applicationData.state="0";
         finish();
     }
 //    public void phasesixgo(View view){
