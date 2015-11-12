@@ -70,6 +70,9 @@ public class dashboard extends Activity implements onTaskCompleted {
         if(salutation=="Ms" || salutation=="Mrs" || salutation=="Miss"){
             avatar.setBackgroundResource(R.drawable.avatar_f);
         }
+        else {
+            avatar.setBackgroundResource(R.drawable.avatar_m);
+        }
         if (sharedDataManager.applicationData.profilePic != null){
             new DrawableFromUri(this.getApplicationContext(), this).execute(
                     sharedDataManager.applicationData.profilePic);
